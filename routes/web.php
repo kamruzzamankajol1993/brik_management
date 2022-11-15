@@ -78,6 +78,9 @@ Route::group(['prefix' => 'admin'], function () {
     ///inventory
 
 
+    Route::get('inventory/view', [InventoryController ::class, 'view'])->name('admin.inventory.view');
+
+
     Route::get('inventory', [InventoryController ::class, 'index'])->name('admin.inventory');
     Route::get('inventory/search', [InventoryController ::class, 'search'])->name('admin.inventory.search');
     Route::get('inventory/create', [InventoryController ::class, 'create'])->name('admin.inventory.create');
@@ -94,11 +97,20 @@ Route::group(['prefix' => 'admin'], function () {
      ///main_client
 
 
+     Route::post('client_payment', [MainclientController ::class, 'client_payment'])->name('client_payment');
+
+
+
+
      Route::get('main_client', [MainclientController ::class, 'index'])->name('admin.main_client');
      Route::get('main_client/search', [MainclientController ::class, 'search'])->name('admin.main_client.search');
      Route::get('main_client/create', [MainclientController ::class, 'create'])->name('admin.main_client.create');
      Route::post('main_client/store', [MainclientController ::class, 'store'])->name('admin.main_client.store');
      Route::get('main_client/edit', [MainclientController ::class, 'edit'])->name('admin.main_client.edit');
+
+     Route::get('main_client/view/{id}', [MainclientController ::class, 'view'])->name('admin.main_client.view');
+
+
      Route::post('main_client/update', [MainclientController ::class, 'update'])->name('admin.main_client.update');
      Route::delete('main_client/delete/{id}', [MainclientController ::class, 'delete'])->name('admin.main_client.delete');
 
@@ -122,11 +134,16 @@ Route::group(['prefix' => 'admin'], function () {
 
 
      ///consigment
+
+     Route::get('get_client_name', [ConsigmentController ::class, 'get_client_name'])->name('get_client_name');
+     Route::get('get_truck_name', [ConsigmentController ::class, 'get_truck_name'])->name('get_truck_name');
+
+
      Route::get('consigment', [ConsigmentController ::class, 'index'])->name('admin.consigment');
      Route::get('consigment/search', [ConsigmentController ::class, 'search'])->name('admin.consigment.search');
      Route::get('consigment/create', [ConsigmentController ::class, 'create'])->name('admin.consigment.create');
      Route::post('consigment/store', [ConsigmentController ::class, 'store'])->name('admin.consigment.store');
-     Route::get('consigment/edit', [ConsigmentController ::class, 'edit'])->name('admin.consigment.edit');
+     Route::get('consigment/edit/{id}', [ConsigmentController ::class, 'edit'])->name('admin.consigment.edit');
      Route::post('consigment/update', [ConsigmentController ::class, 'update'])->name('admin.consigment.update');
      Route::delete('consigment/delete/{id}', [ConsigmentController ::class, 'delete'])->name('admin.consigment.delete');
 

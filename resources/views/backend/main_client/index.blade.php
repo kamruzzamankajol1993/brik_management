@@ -1,7 +1,7 @@
 @extends('backend.master.master')
 
 @section('title')
-Inventory  List |{{ $ins_name }}
+Client  List |{{ $ins_name }}
 @endsection
 
 
@@ -15,7 +15,7 @@ Inventory  List |{{ $ins_name }}
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0">Inventory   List</h4>
+            <h4 class="mb-0">Client   List</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
@@ -32,9 +32,9 @@ Inventory  List |{{ $ins_name }}
                         <div class="col-sm-6">
                             <div class="float-right d-md-block">
                                 <div class="dropdown">
-                                @if (Auth::guard('admin')->user()->can('inventory_add'))
+                                @if (Auth::guard('admin')->user()->can('main_client_add'))
 <button class="btn btn-primary dropdown-toggle waves-effect  btn-sm waves-light" type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">
-                                        <i class="far fa-calendar-plus  mr-2"></i> Add New Inventory
+                                        <i class="far fa-calendar-plus  mr-2"></i> Add New Client
                                     </button>
 @endif
                                 </div>
@@ -55,12 +55,12 @@ Inventory  List |{{ $ins_name }}
                                         <thead>
                                             <tr>
                                                <th>SL</th>
-                                    <th>Lot Number</th>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Alert Quantity</th>
-                                    <th>Sell Quantity</th>
-                                    <th>Available Quantity</th>
+                                    <th>Client Name</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>Contact No</th>
+                                    <th>Total Purchase</th>
+                                    <th>Advance Money</th>
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -69,29 +69,19 @@ Inventory  List |{{ $ins_name }}
 
 
                                         <tbody>
-                                            @foreach ($Inventory_lists as $user)
+                                            @foreach ($client_lists as $user)
 
 
                                 <tr>
                                    <td>{{ $loop->index+1 }}</td>
-                                   <td>{{ $user->lot_number }}</td>
-                                    <td>{{ $user->product_name }}</td>
-                                    <td>{{ $user->quantity }}</td>
-                                    <td>
-<?php
+                                   <td>{{ $user->name }}</td>
+                                    <td>{{ $user->address }}</td>
+                                    <td>{{ $user->email }}</td>
 
-$alert_quantity = DB::table('inventorynames')
-->where('product_name',$user->product_name)->value('alert_name');
+                                    <td>{{ $user->phone }}</td>
+                                    <td></td>
+                                    <td></td>
 
-
-    ?>
-
-    {{ $alert_quantity }}
-
-
-                                    </td>
-                                    <td>{{ $user->sell_quantity}}</td>
-                                    <td>{{ $user->quantity - $user->sell_quantity}}</td>
                                     <td>
 
                                         @if($user->status == 1)
@@ -113,7 +103,13 @@ $alert_quantity = DB::table('inventorynames')
                                     <td>{{ date('d-m-Y', strtotime($user->main_date)) }}</td>
 
                                     <td>
-                                      @if (Auth::guard('admin')->user()->can('inventory_update'))
+
+                                        @if (Auth::guard('admin')->user()->can('main_client_view'))
+                                        <a href="{{ route('admin.main_client.view',$user->id) }}"
+                                        class="btn btn-success waves-light waves-effect  btn-sm" >
+                                        <i class="fas fa-eye"></i></a>
+@endif
+                                      @if (Auth::guard('admin')->user()->can('main_client_update'))
                                           <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $user->id }}"
                                           class="btn btn-primary waves-light waves-effect  btn-sm" >
                                           <i class="fas fa-pencil-alt"></i></button>
@@ -123,38 +119,42 @@ $alert_quantity = DB::table('inventorynames')
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="myLargeModalLabel">Update Inventory </h5>
+                                                            <h5 class="modal-title" id="myLargeModalLabel">Update Client </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ route('admin.inventory.update') }}" method="POST" enctype="multipart/form-data">
+                                                            <form action="{{ route('admin.main_client.update') }}" method="POST" enctype="multipart/form-data">
 
                                                                 @csrf
                                                                 <div class="row">
-                                                                    <div class="form-group col-md-3 col-sm-12">
+                                                                    <div class="form-group col-md-4 col-sm-12">
                                                                         <label for="name">Date</label>
                                                         <input type="date" class="form-control form-control-sm" id="name" name="main_date" placeholder="Enter Name" value="{{ $user->main_date }}">
 
                                                         <input type="hidden" class="form-control form-control-sm" id="name" name="id" placeholder="Enter Name" value="{{ $user->id }}">
                                                                     </div>
 
-                                                                    <div class="form-group col-md-3 col-sm-12">
-                                                                        <label for="email">Lot Number</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="email" name="lot_number" placeholder="Enter Lot Number" value="{{ $user->lot_number }}">
+                                                                    <div class="form-group col-md-4 col-sm-12">
+                                                                        <label for="email">Name</label>
+                                                                        <input type="text" class="form-control form-control-sm" id="email" name="name" placeholder="Enter Name" value="{{ $user->name }}">
                                                                     </div>
-                                                                    <div class="form-group col-md-3 col-sm-12">
-                                                                        <label for="email">Product Name</label>
-                                                                        <select class="form-control form-control-sm" id="email" name="product_name" placeholder="Enter Product Name">
-                                                                            <option>--Please Select --</option>
-                                                                            @foreach($inventory_names as $all_inventory_names)
-                                                                            <option value="{{ $all_inventory_names->product_name }}"  {{ $all_inventory_names->product_name == $user->product_name ? 'selected':'' }}>{{ $all_inventory_names->product_name }}</option>
-                                                                            @endforeach
-                                                                        </select>
+
+                                                                     <div class="form-group col-md-4 col-sm-12">
+                                                                        <label for="email">Address</label>
+                                                                        <input type="text" class="form-control form-control-sm" id="email" name="address" placeholder="Enter Address" value="{{ $user->address }}">
                                                                     </div>
-                                                                     <div class="form-group col-md-3 col-sm-12">
-                                                                        <label for="email"> Quantity</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="email" name="quantity" placeholder="Enter Quantity" value="{{ $user->quantity }}">
+                                                                </div>
+
+                                                                <div class="row mt-2">
+                                                                    <div class="form-group col-md-6 col-sm-12">
+                                                                        <label for="email1">Email</label>
+                                                                        <input type="email" class="form-control form-control-sm" id="email1" name="email" placeholder="Enter Email" value="{{ $user->email }}">
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-6 col-sm-12">
+                                                                        <label for="email1">Phone</label>
+                                                                        <input type="number" class="form-control form-control-sm" id="email1" name="phone" placeholder="Enter Phone" value="{{ $user->phone }}">
                                                                     </div>
                                                                 </div>
 
@@ -184,10 +184,10 @@ $alert_quantity = DB::table('inventorynames')
 
 {{-- <button type="button" class="btn btn-primary waves-light waves-effect  btn-sm" onclick="window.location.href='{{ route('admin.users.view',$user->id) }}'"><i class="fa fa-eye"></i></button> --}}
 
-                                  @if (Auth::guard('admin')->user()->can('inventory_delete'))
+                                  @if (Auth::guard('admin')->user()->can('main_client_delete'))
 
 <button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm" onclick="deleteTag({{ $user->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                    <form id="delete-form-{{ $user->id }}" action="{{ route('admin.inventory.delete',$user->id) }}" method="POST" style="display: none;">
+                    <form id="delete-form-{{ $user->id }}" action="{{ route('admin.main_client.delete',$user->id) }}" method="POST" style="display: none;">
                       @method('DELETE')
                                                     @csrf
 
@@ -214,12 +214,12 @@ $alert_quantity = DB::table('inventorynames')
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Add New Inventory </h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Add New Client </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
-                <form class="custom-validation" action="{{ route('admin.inventory.store') }}" method="post" enctype="multipart/form-data">
+                <form class="custom-validation" action="{{ route('admin.main_client.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                       <div class="row">
 
@@ -229,30 +229,33 @@ $alert_quantity = DB::table('inventorynames')
 
 
                                     <div class="row">
-                                        <div class="form-group col-md-3 col-sm-12">
+                                        <div class="form-group col-md-4 col-sm-12">
                                             <label for="name">Date</label>
-                            <input type="date" class="form-control form-control-sm" id="name" value="<?php echo date('Y-m-d');?>" name="main_date" placeholder="Enter Name" >
+                            <input type="date" class="form-control form-control-sm" id="name" name="main_date" placeholder="Enter Name" value="<?php echo date('Y-m-d');?>">
 
 
                                         </div>
 
-                                        <div class="form-group col-md-3 col-sm-12">
-                                            <label for="email">Lot Number</label>
-                                            <input type="text" class="form-control form-control-sm" id="email" name="lot_number" placeholder="Enter Lot Number"
-                                            value="<?php echo substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,10);?>">
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email">Name</label>
+                                            <input type="text" class="form-control form-control-sm" id="email" name="name" placeholder="Enter Name" >
                                         </div>
-                                        <div class="form-group col-md-3 col-sm-12">
-                                            <label for="email">Product Name</label>
-                                            <select class="form-control form-control-sm" id="email" name="product_name" placeholder="Enter Product Name">
-                                                <option>--Please Select --</option>
-                                                @foreach($inventory_names as $all_inventory_names)
-                                                <option value="{{ $all_inventory_names->product_name }}" >{{ $all_inventory_names->product_name }}</option>
-                                                @endforeach
-                                            </select>
+
+                                         <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email">Address</label>
+                                            <input type="text" class="form-control form-control-sm" id="email" name="address" placeholder="Enter Address" >
                                         </div>
-                                         <div class="form-group col-md-3 col-sm-12">
-                                            <label for="email"> Quantity</label>
-                                            <input type="text" class="form-control form-control-sm" id="email" name="quantity" placeholder="Enter Quantity" >
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label for="email1">Email</label>
+                                            <input type="email" class="form-control form-control-sm" id="email1" name="email" placeholder="Enter Email" >
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-12">
+                                            <label for="email1">Phone</label>
+                                            <input type="number" class="form-control form-control-sm" id="email1" name="phone" placeholder="Enter Phone" >
                                         </div>
                                     </div>
 
@@ -265,7 +268,7 @@ $alert_quantity = DB::table('inventorynames')
                                             <select name="status" class="form-control form-control-sm" >
 
                                                     <option value="1" >Active</option>
-                                                    <option value="0" >InActive</option>
+                                                    <option value="0">InActive</option>
                                             </select>
                                         </div>
                                     </div>
