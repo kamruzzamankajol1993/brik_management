@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 12:42 PM
+-- Generation Time: Nov 15, 2022 at 12:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -51,7 +51,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `ward_id`, `staff_id`, `staff_main_id`, `name`, `email`, `phone`, `username`, `email_verified_at`, `password`, `image`, `status`, `cstatus`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, '4004', NULL, 'superadmin', 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$P7XKbcdy.V46KeuF1PljgOoXXfAQvqjuZkPg71AyMlNUkdcWbBXjS', 'user-photo/1645269974.jpg', 1, 5, 'Z4DIT1Sr2Cy29jnsJcPKyxtfX7VKlr6p79kX40ExPvhK3paJ9U5o1yuIumwo', '2021-03-24 05:29:53', '2022-02-19 05:26:14'),
+(1, NULL, '4004', NULL, 'superadmin', 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$P7XKbcdy.V46KeuF1PljgOoXXfAQvqjuZkPg71AyMlNUkdcWbBXjS', 'user-photo/1645269974.jpg', 1, 5, 'FG02fU5JUxwMYkzV3EyWJHZ8MixpTEkr4g8Motf3KkUXzlRZQzQ5COL0TSBB', '2021-03-24 05:29:53', '2022-02-19 05:26:14'),
 (2, NULL, NULL, NULL, 'admin', 'kajol1122018@gmail.com', NULL, NULL, NULL, '$2y$10$dSPMgoOjeaGN2C1kaNe1aeJFSr5wh5I8IWe0C5tIncxF2LUkp6toS', NULL, 1, 5, NULL, '2021-03-24 06:14:00', '2022-08-10 03:10:49');
 
 -- --------------------------------------------------------
@@ -70,6 +70,14 @@ CREATE TABLE `caranddrivers` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `caranddrivers`
+--
+
+INSERT INTO `caranddrivers` (`id`, `main_date`, `driver_name`, `car_number`, `contact_no`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2022-11-15', 'gg', '555', '6546456', '1', '2022-11-15 00:05:56', '2022-11-15 00:05:56'),
+(2, '2022-11-15', 'ttttt', '7777', '546456456', '1', '2022-11-15 00:06:35', '2022-11-15 00:06:35');
 
 -- --------------------------------------------------------
 
@@ -190,12 +198,37 @@ INSERT INTO `clients` (`id`, `c_type`, `name`, `slug`, `phone`, `email`, `addres
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `consigment_details`
+--
+
+CREATE TABLE `consigment_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `consigment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `consigment_details`
+--
+
+INSERT INTO `consigment_details` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(3, '1', 'ttt', '44', '44444', '2022-11-15 03:51:23', '2022-11-15 03:51:23'),
+(4, '1', 'eee', '3', '33333', '2022-11-15 03:51:23', '2022-11-15 03:51:23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `consignments`
 --
 
 CREATE TABLE `consignments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rmain_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `consignment_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delivery_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -204,10 +237,17 @@ CREATE TABLE `consignments` (
   `driver_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `driver_contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `request_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `consignments`
+--
+
+INSERT INTO `consignments` (`id`, `main_date`, `rmain_date`, `consignment_number`, `client_name`, `delivery_address`, `contact`, `select_truck`, `driver_name`, `driver_contact`, `request_type`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2022-11-15', '2022-11-15', '9HMCNJ25AX', 'Rajshahi', 'hfghfgh', '01646735100', '555', 'gg', '6546456', 'Normal', '2', '2022-11-15 02:52:31', '2022-11-15 04:09:23');
 
 -- --------------------------------------------------------
 
@@ -264,7 +304,8 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `main_date`, `product_name`, `lot_number`, `quantity`, `sell_quantity`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-14', 'eee', 'IJ591KYFTV', '70', NULL, '1', '2022-11-14 05:37:14', '2022-11-14 05:37:14');
+(1, '2022-11-14', 'eee', 'IJ591KYFTV', '70', NULL, '1', '2022-11-14 05:37:14', '2022-11-15 04:09:23'),
+(2, '2022-11-15', 'ttt', 'E35PHF2XTY', '7777', NULL, '1', '2022-11-15 01:42:49', '2022-11-15 04:09:23');
 
 -- --------------------------------------------------------
 
@@ -287,7 +328,8 @@ CREATE TABLE `inventorynames` (
 --
 
 INSERT INTO `inventorynames` (`id`, `main_date`, `product_name`, `alert_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-14', 'eee', '339', '1', '2022-11-14 05:00:43', '2022-11-14 05:37:00');
+(1, '2022-11-14', 'eee', '339', '1', '2022-11-14 05:00:43', '2022-11-14 05:37:00'),
+(2, '2022-11-15', 'ttt', '33', '1', '2022-11-15 01:42:36', '2022-11-15 01:42:36');
 
 -- --------------------------------------------------------
 
@@ -302,11 +344,19 @@ CREATE TABLE `mainclients` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_purchase` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `advance_money` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `mainclients`
+--
+
+INSERT INTO `mainclients` (`id`, `name`, `address`, `email`, `phone`, `total_purchase`, `main_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Rajshahi', 'hfghfgh', 'kkajol428@gmail.com', '01646735100', NULL, '2022-11-15', '1', '2022-11-14 23:33:44', '2022-11-14 23:35:28'),
+(2, 'rtyr', 'rtyrty', 'rtyrt@rgtre.com', '01646735100', NULL, '2022-11-15', '1', '2022-11-14 23:35:47', '2022-11-14 23:35:47');
 
 -- --------------------------------------------------------
 
@@ -383,7 +433,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (56, '2022_11_14_084131_create_caranddrivers_table', 24),
 (57, '2022_11_14_084159_create_consignments_table', 24),
 (58, '2022_11_14_084231_create_releases_table', 24),
-(59, '2022_11_14_085506_create_consiproducts_table', 24);
+(59, '2022_11_14_085506_create_consiproducts_table', 24),
+(60, '2022_11_15_053636_create_payments_table', 25),
+(61, '2022_11_15_061550_create_consigment_details_table', 26);
 
 -- --------------------------------------------------------
 
@@ -462,17 +514,9 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `invoice_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `client_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `order_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `grand_total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `total_pay` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `cod` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `due` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `pay_date` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pay_method` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT 'Cash',
-  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -481,24 +525,8 @@ CREATE TABLE `payments` (
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `invoice_id`, `client_slug`, `order_id`, `grand_total`, `total_pay`, `cod`, `due`, `pay_date`, `pay_method`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1', 'kamruzzaman-kajol_01646735100', 'EVTUOKA7Y6', '1295', '1295', '0', '0', NULL, 'Cash', NULL, NULL, '2022-09-16 07:01:07', '2022-09-16 07:01:07'),
-(2, '2', 'kamruzzaman-kajol_01646735100', 'T2ODHKWQN4', '395', '395', '0', '0', NULL, 'Cash', NULL, NULL, '2022-09-16 22:33:58', '2022-09-16 22:33:58'),
-(3, '3', 'kamruzzaman-kajol_01646735100', 'QM915T7SWK', '500', '500', '0', '0', NULL, 'Cash', NULL, NULL, '2022-09-16 22:35:04', '2022-09-16 22:35:04'),
-(4, '15', 'client_one66234545_0122266634', 'ZFKTB39WMS', '395', '395', '0', '0', NULL, 'Cash', NULL, NULL, '2022-09-17 00:15:55', '2022-09-17 00:15:55'),
-(5, '16', 'kamruzzaman-kajol_01646735100', 'U6HA40VSJN', '395', '395', '0', '0', NULL, 'Cash', NULL, NULL, '2022-09-17 00:17:37', '2022-09-17 00:17:37'),
-(9, '17', 'kamruzzaman-kajol_01646735100', 'O06NH138UX', '395', '290', '0', '105', NULL, 'Cash', NULL, '1', '2022-09-17 05:36:29', '2022-09-17 05:36:29'),
-(10, '18', 'kamruzzaman-kajol_01646735100', 'I3FCU8TJY6', '790', '790', '0', '0', NULL, 'Cash', NULL, '1', '2022-09-19 01:16:59', '2022-09-19 01:16:59'),
-(11, '21', 'kamruzzaman-kajol_01646735100', 'W9BAP5U1EX', '445', '103', '0', '342', NULL, 'Cash', NULL, '1', '2022-09-28 02:18:56', '2022-09-28 02:18:56'),
-(12, '22', '0', 'SQ7FKV05C6', '895', '103', '792', '0', NULL, 'Cash', NULL, '1', '2022-09-28 02:20:39', '2022-09-28 02:20:39'),
-(13, '23', 'kamruzzaman-kajol-01646735100', '4RN1J02LGQ', '1460', '40', '0', '1420', NULL, 'Cash', NULL, '1', '2022-09-28 02:33:00', '2022-09-28 02:33:00'),
-(14, '24', 'kamruzzaman-kajol_01646735100', 'A7R2VXFUGN', '2695', '2000', '695', '0', NULL, 'Cash', NULL, '1', '2022-10-04 04:19:59', '2022-10-04 04:19:59'),
-(15, '28', 'kamruzzaman-kajol_01646735100', 'A7R2VXFUGN', '395', '395', '0', '0', NULL, 'Cash', NULL, '1', '2022-10-06 01:17:07', '2022-10-06 01:17:07'),
-(16, '29', 'kamruzzaman-kajol_01646735100', 'A7R2VXFUGN', '795', '795', '0', '0', NULL, 'Cash', NULL, '1', '2022-10-06 01:35:42', '2022-10-06 01:35:42'),
-(17, '30', 'kamruzzaman-kajol_01646735100', 'A7R2VXFUGN', '0', '0', '0', '0', NULL, 'Cash', NULL, '1', '2022-10-06 02:01:24', '2022-10-06 02:01:24'),
-(19, '31', 'kamruzzaman-kajol_01646735100', 'LUQ2RMSND4', '395', '395', '0', '0', NULL, 'Cash', NULL, '1', '2022-10-10 04:24:13', '2022-10-10 04:24:13'),
-(20, '33', 'ashikur-rahman-mohin_01743763369', 'YU8LJDTRKG', '420', '0', '0', '420', NULL, 'Cash', NULL, '1', '2022-11-10 17:18:21', '2022-11-10 17:18:21'),
-(21, '34', 'ashikur-rahman-mohin_01743763369', 'HI4MU9VZFB', '723', '9', '2', '712', NULL, 'Cash', NULL, '1', '2022-11-13 10:26:16', '2022-11-13 10:26:16');
+INSERT INTO `payments` (`id`, `client_id`, `main_date`, `amount`, `created_at`, `updated_at`) VALUES
+(1, '2', '2022-11-15', '1080', '2022-11-15 05:21:56', '2022-11-15 05:21:56');
 
 -- --------------------------------------------------------
 
@@ -932,6 +960,12 @@ ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `consigment_details`
+--
+ALTER TABLE `consigment_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `consignments`
 --
 ALTER TABLE `consignments`
@@ -1086,7 +1120,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `caranddrivers`
 --
 ALTER TABLE `caranddrivers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1107,10 +1141,16 @@ ALTER TABLE `clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT for table `consigment_details`
+--
+ALTER TABLE `consigment_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `consignments`
 --
 ALTER TABLE `consignments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `consiproducts`
@@ -1128,25 +1168,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `inventorynames`
 --
 ALTER TABLE `inventorynames`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mainclients`
 --
 ALTER TABLE `mainclients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `orderbies`
@@ -1158,7 +1198,7 @@ ALTER TABLE `orderbies`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `permissions`
