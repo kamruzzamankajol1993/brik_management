@@ -130,6 +130,9 @@ class MainclientController extends Controller
                                     ->get();
 
 
+                                   // dd($consigment_main_detail);
+
+
 
                                     $total_price_list = 0;
 
@@ -143,6 +146,9 @@ class MainclientController extends Controller
                 $total_price_list = $total_price_list+$mm_price;
 
                                     }
+
+
+                                   // dd($total_price_list);
 
         return view('backend.main_client.view',compact('consigment_main_detail','total_price_list','client_lists','payment_list','payment_list_amount'));
 

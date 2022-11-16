@@ -90,8 +90,22 @@ $alert_quantity = DB::table('inventorynames')
 
 
                                     </td>
-                                    <td>{{ $user->sell_quantity}}</td>
-                                    <td>{{ $user->quantity - $user->sell_quantity}}</td>
+                                    <td>
+
+
+                                        <?php
+
+$alert_quantity12 = DB::table('consigment_details')
+->where('product_name',$user->product_name)->where('status',1)->sum('quantity');
+
+
+    ?>
+
+                                        {{ $alert_quantity12}}
+
+
+                                    </td>
+                                    <td>{{ $user->quantity}}</td>
                                     <td>
 
                                         @if($user->status == 1)
@@ -113,6 +127,109 @@ $alert_quantity = DB::table('inventorynames')
                                     <td>{{ date('d-m-Y', strtotime($user->main_date)) }}</td>
 
                                     <td>
+
+                                        @if (Auth::guard('admin')->user()->can('inventory_view'))
+
+                                        <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lge{{ $user->id }}"
+                                            class="btn btn-success waves-light waves-effect  btn-sm" >
+                                            <i class="fas fa-list"></i></button>
+
+                                              <!--  Large modal example -->
+                                              <div class="modal fade bs-example-modal-lge{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-lg">
+                                                      <div class="modal-content">
+                                                          <div class="modal-header">
+                                                              <h5 class="modal-title" id="myLargeModalLabel">Add Quantity </h5>
+                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                              </button>
+                                                          </div>
+                                                          <div class="modal-body">
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-5">
+
+                                                                    <form class="custom-validation" action="{{ route('inventory_quantity') }}" method="post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" class="form-control form-control-sm" id="name" name="id" placeholder="Enter Name" value="{{ $user->product_name}}">
+                                                                        <div class="row">
+                                                                            <div class="form-group col-md-12 col-sm-12">
+                                                                                <label for="name">Date</label>
+                                                                <input type="date" class="form-control form-control-sm" id="name" value="<?php echo date('Y-m-d');?>" name="main_date" placeholder="Enter Name" >
+
+
+                                                                            </div>
+
+                                                                            <div class="form-group col-md-12 col-sm-12">
+                                                                                <label for="email">Quantity</label>
+                                                                                <input type="number" class="form-control form-control-sm" id="email" name="quantity" placeholder="Enter Quantity"
+                                                                                value="">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <button type="submit" class=" mt-3 btn btn-primary btn-lg  waves-effect  btn-sm waves-light mr-1">
+                                                                            Submit
+                                                                         </button>
+                                                                    </form>
+
+
+                                                                </div>
+                                                                <div class="col-md-7">
+
+                                                                    <?php
+$product_quantity_list1 = DB::table('productquantities')->where('product_id',$user->product_name)
+        ->latest()->get();
+
+                                                                        ?>
+
+<div class="table-responsive">
+    <table  class="table table-bordered">
+
+        <thead>
+            <tr>
+               <th>SL</th>
+    <th>Quantity</th>
+    <th>Created At</th>
+    <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($product_quantity_list1 as $key=>$all_product_quantity_list1)
+            <tr>
+                <td>{{ $key+1 }}</td>
+                <td>{{ $all_product_quantity_list1->quantity}}</td>
+                <td>{{ date('d-m-Y', strtotime($all_product_quantity_list1->main_date)) }}</td>
+<td>
+
+
+    @if (Auth::guard('admin')->user()->can('inventory_delete'))
+
+    <button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm" onclick="deleteTag({{ $all_product_quantity_list1->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        <form id="delete-form-{{ $all_product_quantity_list1->id }}" action="{{ route('admin.inventory_quantity.delete',$all_product_quantity_list1->id) }}" method="POST" style="display: none;">
+                          @method('DELETE')
+                                                        @csrf
+
+                                                    </form>
+                                                    @endif
+
+</td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
+</div>
+
+
+                                                                </div>
+                                                            </div>
+
+                                                          </div>
+                                                      </div><!-- /.modal-content -->
+                                                  </div><!-- /.modal-dialog -->
+                                              </div><!-- /.modal -->
+
+                                        @endif
                                       @if (Auth::guard('admin')->user()->can('inventory_update'))
                                           <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $user->id }}"
                                           class="btn btn-primary waves-light waves-effect  btn-sm" >

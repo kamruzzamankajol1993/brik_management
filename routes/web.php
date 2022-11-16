@@ -81,6 +81,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('inventory/view', [InventoryController ::class, 'view'])->name('admin.inventory.view');
 
 
+
+    Route::post('inventory_quantity/store', [InventoryController ::class, 'inventory_quantity'])->name('inventory_quantity');
+    Route::delete('inventory_quantity/delete/{id}', [InventoryController ::class, 'inventory_quantity_delete'])->name('admin.inventory_quantity.delete');
+
+
+
+
     Route::get('inventory', [InventoryController ::class, 'index'])->name('admin.inventory');
     Route::get('inventory/search', [InventoryController ::class, 'search'])->name('admin.inventory.search');
     Route::get('inventory/create', [InventoryController ::class, 'create'])->name('admin.inventory.create');

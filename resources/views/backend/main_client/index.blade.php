@@ -79,8 +79,53 @@ Client  List |{{ $ins_name }}
                                     <td>{{ $user->email }}</td>
 
                                     <td>{{ $user->phone }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+
+<?php
+$congisment_list = DB::table('consignments')->where('client_name',$user->name)
+        ->where('status',1)->select('id')->get();
+
+
+        $convert_name_title = $congisment_list->implode("id", " ");
+
+        $separated_data_title = explode(" ", $convert_name_title);
+
+        $consigment_main_detail = DB::table('consigment_details')->whereIn('consigment_id',$separated_data_title)
+                                    ->get();
+
+
+                                    $total_price_list = 0;
+
+
+                                    foreach($consigment_main_detail as $all_consigment_main_detail){
+
+
+
+                                        $mm_price = $all_consigment_main_detail->price * $all_consigment_main_detail->quantity;
+
+                $total_price_list = $total_price_list+$mm_price;
+
+                                    }
+
+
+    ?>
+{{ $total_price_list }}
+
+
+
+                                    </td>
+                                    <td>
+
+<?php
+
+$alert_quantity12 = DB::table('payments')
+->where('client_id',$user->id)->sum('amount');
+
+    ?>
+    {{ $alert_quantity12 }}
+
+
+                                    </td>
 
                                     <td>
 

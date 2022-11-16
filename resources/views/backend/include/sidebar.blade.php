@@ -81,16 +81,18 @@
                     {{-- <li class="{{ Route::is('sub_category_type')  ? 'active' : '' }}"><a href="{{ route('sub_category_type') }}"> <span>Test Form</span> </a></li> --}}
 
 
-
+                    @if ($usr->can('consigment_add'))
+                    <li class="{{ Route::is('admin.consigment.create')  ? 'active' : '' }}"><a href="{{ route('admin.consigment.create') }}"> <span>Add Consigment </span> </a></li>
+               @endif
 
 
                @if ($usr->can('consigment_add') || $usr->can('consigment_view') || $usr->can('consigment_delete') ||$usr->can('consigment_update') )
-                    <li class="{{ Route::is('admin.consigment')  ? 'active' : '' }}"><a href="{{ route('admin.consigment') }}"> <span>Consigment</span> </a></li>
+                    <li class="{{ Route::is('admin.consigment')  ? 'active' : '' }}"><a href="{{ route('admin.consigment') }}"> <span>Consigment List</span> </a></li>
                @endif
 
 
                @if ($usr->can('release_product_add') || $usr->can('release_product_view') || $usr->can('release_product_delete') ||$usr->can('release_product_update') )
-                    <li class="{{ Route::is('admin.release_product')  ? 'active' : '' }}"><a href="{{ route('admin.release_product') }}"> <span>Release</span> </a></li>
+                    <li class="{{ Route::is('admin.release_product')  ? 'active' : '' }}"><a href="{{ route('admin.release_product') }}"> <span>Release List</span> </a></li>
                @endif
 
 

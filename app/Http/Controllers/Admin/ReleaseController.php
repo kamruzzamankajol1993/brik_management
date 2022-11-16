@@ -43,7 +43,17 @@ class ReleaseController extends Controller
          $database_save->status = $request->status;
          $database_save->save();
 
+
+         $final_update_all_data =  Consigment_detail::where('consigment_id',$request->id)
+
+            ->update([
+                
+                'status' => $request->status
+             ]);
+
          if($request->status == 2){
+
+
 
             $consigment_main_detail = Consigment_detail::where('consigment_id',$request->id)->get();
 

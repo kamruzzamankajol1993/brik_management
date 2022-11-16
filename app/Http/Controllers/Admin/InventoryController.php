@@ -10,6 +10,7 @@ use DB;
 use App\Models\Brand;
 use App\Models\Inventoryname;
 use App\Models\Inventory;
+use App\Models\Productquantity;
 class InventoryController extends Controller
 {
     public $user;
@@ -36,7 +37,31 @@ class InventoryController extends Controller
         $inventory_names = Inventoryname::where('status',1)->latest()->get();
         $Inventory_lists = Inventory::latest()->get();
 
+
+
         return view('backend.inventory.index',compact('inventory_names','Inventory_lists'));
+    }
+
+
+    public function inventory_quantity(Request $request){
+
+        $category_list = new Productquantity();
+        $category_list->main_date = $request->main_date;
+        $category_list->quantity = $request->quantity;
+        $category_list->product_id = $request->id;
+        $category_list->save();
+
+        $catch_previous_value = Inventory::where('product_name',$request->id)
+                                   ->value('quantity');
+
+                                   $get_rr_on = $catch_previous_value+$request->quantity;
+
+         $catch_previous_value45 = Inventory::where('product_name',$request->id)
+         ->update([
+            'quantity' => $get_rr_on
+         ]);
+
+
     }
 
 
@@ -91,5 +116,22 @@ class InventoryController extends Controller
 
 
         return back()->with('error','Deleted successfully!');
+    }
+
+    public function inventory_quantity_delete($id){
+
+
+        $get_quantity_all = Productquantity::where('id',$id)->value('quantity');
+
+
+        $admins = Productquantity::find($id);
+        if (!is_null($admins)) {
+            $admins->delete();
+        }
+
+
+        return back()->with('error','Deleted successfully!');
+
+
     }
 }
