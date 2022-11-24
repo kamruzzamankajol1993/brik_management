@@ -56,8 +56,8 @@ Category information | {{ $ins_name }}
 
                                     <th>Name </th>
 
-
-
+                                    <th>Status</th>
+                                    <th>Created At</th>
 
                                     <th>Action</th>
                                             </tr>
@@ -87,6 +87,26 @@ Category information | {{ $ins_name }}
 
 
                                 </td>
+
+                                <td>
+
+                                    @if($user->status == 1)
+
+
+                                    <span class="badge bg-success mt-1">
+                                        Active
+                                     </span>
+
+
+                                    @else
+
+                                    <span class="badge bg-danger mt-1">
+                                       Inactive
+                                    </span>
+                                  @endif
+                                </td>
+
+                                <td>{{ date('d-m-Y', strtotime($user->main_date)) }}</td>
 
 
                                     <td>
@@ -124,6 +144,18 @@ Category information | {{ $ins_name }}
 
                         </div>
 
+
+                        <div class="row">
+
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label for="password">Status</label>
+                                <select name="status" class="form-control form-control-sm" >
+
+                                        <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>InActive</option>
+                                </select>
+                            </div>
+                        </div>
 
                                             </div>
 
@@ -200,102 +232,34 @@ Category information | {{ $ins_name }}
                     @csrf
                        <div class="row">
 
-                        <?php
 
-                        $checkfor_first_child = DB::table('categories')
-                        ->whereNotNull('sub_cat')->count();
-
-                        $checkfor_second_child = DB::table('categories')
-                        ->whereNotNull('child_one')->count();
-
-
-                        $checkfor_three_child = DB::table('categories')
-                        ->whereNotNull('child_two')->count();
-
-
-                        $checkfor_four_child = DB::table('categories')
-                        ->whereNotNull('child_three')->count();
-
-                        $checkfor_five_child = DB::table('categories')
-                        ->whereNotNull('child_four')->count();
-
-                        $checkfor_six_child = DB::table('categories')
-                        ->whereNotNull('child_five')->count();
-
-                        $checkfor_seven_child = DB::table('categories')
-                        ->whereNotNull('child_six')->count();
-                        $checkfor_eight_child = DB::table('categories')
-                        ->whereNotNull('child_seven')->count();
-
-                        //dd($checkfor_first_child);
-
-
-                         ?>
 
                           <div class="col-lg-12">
                               <div class="card">
                                   <div class="card-body">
                                     <div class="row">
-                                        <div class="form-group col-md-12 col-sm-12">
-                                            <label for="password">Category type</label>
-                                <select  class="form-control form-control-sm"  name="cat_type" id="cat_type">
-                                    <option value="0">--- Please Select ---</option>
-                                      <option value="Category">Category</option>
-                                      <option value="SubCategory">SubCategory</option>
-                                      @if($checkfor_first_child == 0)
 
-                                      @else
-                                      <option value="FirstChild">FirstChild</option>
-                                      @endif
-                                      @if($checkfor_second_child == 0)
-
-                                      @else
-                                      <option value="SecondChild">SecondChild</option>
-                                      @endif
-                                      @if($checkfor_three_child == 0)
-
-                                      @else
-                                      <option value="ThirdChild">ThirdChild</option>
-                                      @endif
-                                      @if($checkfor_four_child == 0)
-
-                                      @else
-                                      <option value="FourthChild">FourthChild</option>
-                                      @endif
-
-                                      @if($checkfor_five_child == 0)
-
-                                      @else
-                                      <option value="FifthChild">FifthChild</option>
-                                      @endif
-                                      @if($checkfor_six_child == 0)
-
-                                      @else
-                                      <option value="SixthChild">SixthChild</option>
-                                      @endif
-                                      @if($checkfor_seven_child == 0)
-
-                                      @else
-                                      <option value="SeventhChild">SeventhChild</option>
-                                      @endif
-                                      @if($checkfor_eight_child == 0)
-
-                                      @else
-                                      <option value="EightChild">EightChild</option>
-                                      @endif
-
-
-                                        </select>
-                   </div>
                                     </div>
 <div class="row"  id="final_result_cat">
-{{-- <div class="form-group col-md-12 col-sm-12">
+<div class="form-group col-md-12 col-sm-12">
                           <label for="password">Category Name</label>
               <input type="text" class="form-control form-control-sm"  name="cat_name" placeholder="Enter Name">
 
 
- </div> --}}
  </div>
+ </div>
+
+ <div class="row">
+
+    <div class="form-group col-md-12 col-sm-12">
+        <label for="password">Status</label>
+        <select name="status" class="form-control form-control-sm" >
+
+                <option value="1" >Active</option>
+                <option value="0" >InActive</option>
+        </select>
+    </div>
+</div>
 
 </div>
 </div>

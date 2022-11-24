@@ -36,165 +36,16 @@ class CategoryController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to add any data !');
         }
 
-        if($request->cat_type == 'Category'){
+
 
             $category_list = new Category();
+            $category_list->main_date = date('Y-m-d');
             $category_list->cat_name = $request->cat_name;
             $category_list->status = $request->status;
             $category_list->save();
 
 
-        }elseif($request->cat_type == 'SubCategory'){
 
-
-            $category_list = new Category();
-            $category_list->cat_name = $request->cat_name;
-            $category_list->sub_cat = $request->sub_cat;
-            $category_list->status = $request->status;
-
-            $category_list->save();
-
-        }elseif($request->cat_type == 'FirstChild'){
-
-            $category_name = Category::where('sub_cat',$request->sub_cat)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $request->sub_cat;
-            $category_list->child_one = $request->child_one;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'SecondChild'){
-
-            $subcategory_name = Category::where('child_one',$request->child_one)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $request->child_one;
-            $category_list->child_two = $request->child_two;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'ThirdChild'){
-
-            $child_one_name = Category::where('child_two',$request->child_two)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $request->child_two;
-            $category_list->child_three = $request->child_three;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'FourthChild'){
-            $child_two_name = Category::where('child_three',$request->child_three)->value('child_two');
-            $child_one_name = Category::where('child_two',$child_two_name)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $child_two_name;
-            $category_list->child_three = $request->child_three;
-            $category_list->child_four = $request->child_four;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'FifthChild'){
-            $child_three_name = Category::where('child_four',$request->child_four)->value('child_three');
-            $child_two_name = Category::where('child_three',$child_three_name)->value('child_two');
-            $child_one_name = Category::where('child_two',$child_two_name)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $child_two_name;
-            $category_list->child_three = $child_three_name;
-            $category_list->child_four = $request->child_four;
-            $category_list->child_five = $request->child_five;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'SixthChild'){
-            $child_four_name = Category::where('child_five',$request->child_five)->value('child_four');
-            $child_three_name = Category::where('child_four',$child_four_name)->value('child_three');
-            $child_two_name = Category::where('child_three',$child_three_name)->value('child_two');
-            $child_one_name = Category::where('child_two',$child_two_name)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $child_two_name;
-            $category_list->child_three = $child_three_name;
-            $category_list->child_four = $child_four_name;
-            $category_list->child_five = $request->child_five;
-            $category_list->child_six = $request->child_six;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'SeventhChild'){
-            $child_five_name = Category::where('child_six',$request->child_six)->value('child_five');
-            $child_four_name = Category::where('child_five',$child_five_name)->value('child_four');
-            $child_three_name = Category::where('child_four',$child_four_name)->value('child_three');
-            $child_two_name = Category::where('child_three',$child_three_name)->value('child_two');
-            $child_one_name = Category::where('child_two',$child_two_name)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $child_two_name;
-            $category_list->child_three = $child_three_name;
-            $category_list->child_four = $child_four_name;
-            $category_list->child_five = $child_five_name;
-            $category_list->child_six = $request->child_six;
-            $category_list->child_seven = $request->child_seven;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }elseif($request->cat_type == 'EightChild'){
-
-            $child_six_name = Category::where('child_seven',$request->child_seven)->value('child_six');
-            $child_five_name = Category::where('child_six',$child_six_name)->value('child_five');
-            $child_four_name = Category::where('child_five',$child_five_name)->value('child_four');
-            $child_three_name = Category::where('child_four',$child_four_name)->value('child_three');
-            $child_two_name = Category::where('child_three',$child_three_name)->value('child_two');
-            $child_one_name = Category::where('child_two',$child_two_name)->value('child_one');
-            $subcategory_name = Category::where('child_one',$child_one_name)->value('sub_cat');
-            $category_name = Category::where('sub_cat',$subcategory_name)->value('cat_name');
-
-            $category_list = new Category();
-            $category_list->cat_name = $category_name;
-            $category_list->sub_cat = $subcategory_name;
-            $category_list->child_one = $child_one_name;
-            $category_list->child_two = $child_two_name;
-            $category_list->child_three = $child_three_name;
-            $category_list->child_four = $child_four_name;
-            $category_list->child_five = $child_five_name;
-            $category_list->child_six = $child_six_name;
-            $category_list->child_seven = $request->child_seven;
-            $category_list->child_eight = $request->child_eight;
-            $category_list->status = $request->status;
-            $category_list->save();
-
-        }
 
 
 
@@ -209,6 +60,7 @@ class CategoryController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to update any data !');
         }
         $category_list = Category::find($request->id);
+        $category_list->main_date = date('Y-m-d');
         $category_list->cat_name = $request->cat_name;
         $category_list->status = $request->status;
         $category_list->save();

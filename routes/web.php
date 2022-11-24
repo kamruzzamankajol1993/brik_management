@@ -28,6 +28,9 @@ use App\Http\Controllers\Admin\MainclientController;
 use App\Http\Controllers\Admin\CardriverController;
 use App\Http\Controllers\Admin\ConsigmentController;
 use App\Http\Controllers\Admin\ReleaseController;
+use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\OtherConsigmentController;
+use App\Http\Controllers\Admin\SelltoshopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +62,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
+
+    ///vendor
+    Route::get('vendor', [VendorController ::class, 'index'])->name('admin.vendor');
+    Route::get('vendor/search', [VendorController ::class, 'search'])->name('admin.vendor.search');
+    Route::get('vendor/create', [VendorController ::class, 'create'])->name('admin.vendor.create');
+    Route::post('vendor/store', [VendorController ::class, 'store'])->name('admin.vendor.store');
+    Route::get('vendor/edit', [VendorController ::class, 'edit'])->name('admin.vendor.edit');
+    Route::post('vendor/update', [VendorController ::class, 'update'])->name('admin.vendor.update');
+    Route::delete('vendor/delete/{id}', [VendorController ::class, 'delete'])->name('admin.vendor.delete');
+
+
+    ///vendor
 
 
     ///inventory_name
@@ -155,6 +172,35 @@ Route::group(['prefix' => 'admin'], function () {
      Route::delete('consigment/delete/{id}', [ConsigmentController ::class, 'delete'])->name('admin.consigment.delete');
 
 
+
+     Route::get('get_vendor_name', [OtherConsigmentController ::class, 'get_vendor_name'])->name('get_vendor_name');
+
+
+
+     Route::get('other_consigment', [OtherConsigmentController ::class, 'index'])->name('admin.other_consigment');
+     Route::get('other_consigment/search', [OtherConsigmentController ::class, 'search'])->name('admin.other_consigment.search');
+     Route::get('other_consigment/create', [OtherConsigmentController ::class, 'create'])->name('admin.other_consigment.create');
+     Route::post('other_consigment/store', [OtherConsigmentController ::class, 'store'])->name('admin.other_consigment.store');
+     Route::get('other_consigment/edit/{id}', [OtherConsigmentController ::class, 'edit'])->name('admin.other_consigment.edit');
+     Route::post('other_consigment/update', [OtherConsigmentController ::class, 'update'])->name('admin.other_consigment.update');
+     Route::delete('other_consigment/delete/{id}', [OtherConsigmentController ::class, 'delete'])->name('admin.other_consigment.delete');
+
+
+
+
+
+
+     Route::get('get_assaign_product_to_vendor', [SelltoshopController ::class, 'get_assaign_product_to_vendor'])->name('get_assaign_product_to_vendor');
+
+
+
+     Route::get('sell_to_shop', [SelltoshopController ::class, 'index'])->name('admin.sell_to_shop');
+     Route::get('sell_to_shop/search', [SelltoshopController ::class, 'search'])->name('admin.sell_to_shop.search');
+     Route::get('sell_to_shop/create', [SelltoshopController ::class, 'create'])->name('admin.sell_to_shop.create');
+     Route::post('sell_to_shop/store', [SelltoshopController ::class, 'store'])->name('admin.sell_to_shop.store');
+     Route::get('sell_to_shop/edit/{id}', [SelltoshopController ::class, 'edit'])->name('admin.sell_to_shop.edit');
+     Route::post('sell_to_shop/update', [SelltoshopController ::class, 'update'])->name('admin.sell_to_shop.update');
+     Route::delete('sell_to_shop/delete/{id}', [SelltoshopController ::class, 'delete'])->name('admin.sell_to_shop.delete');
 
      ///consigment
 

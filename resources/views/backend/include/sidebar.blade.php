@@ -28,7 +28,9 @@
                         {{-- <li class="{{ Route::is('sub_category_type')  ? 'active' : '' }}"><a href="{{ route('sub_category_type') }}"> <span>Test Form</span> </a></li> --}}
 
 
-
+                        @if ($usr->can('category_add') || $usr->can('category_view') || $usr->can('category_delete') ||$usr->can('category_update') )
+                        <li class="{{ Route::is('admin.category')  ? 'active' : '' }}"><a href="{{ route('admin.category') }}"> <span>Category</span> </a></li>
+                   @endif
 
 
                    @if ($usr->can('inventory_name_add') || $usr->can('inventory_name_view') || $usr->can('inventory_name_delete') ||$usr->can('inventory_name_update') )
@@ -59,6 +61,16 @@
                 </a>
             </li>
             @endif
+
+            @if ($usr->can('vendor_add') || $usr->can('vendor_view') || $usr->can('vendor_delete') ||$usr->can('vendor_update') )
+            <li class="{{ Route::is('admin.vendor') ? 'active' : '' }}">
+                <a href="{{ route('admin.vendor') }}" class="waves-effect">
+                    <i class="bx bxs-user-plus"></i>
+                    <span key="t-dashboard">Vendor List</span>
+                </a>
+            </li>
+            @endif
+
             <li class="menu-title" key="t-apps">Car & Driver</li>
 
             @if ($usr->can('car_and_driver_add') || $usr->can('car_and_driver_view') || $usr->can('car_and_driver_delete') ||$usr->can('car_and_driver_update') )
@@ -74,7 +86,7 @@
             <li>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                     <i class="bx bxs-file"></i>
-                    <span key="t-projects">Consigment List</span>
+                    <span key="t-projects">Brick Consigment List</span>
                 </a>
                 <ul class="sub-menu" aria-expanded="false">
 
@@ -104,6 +116,53 @@
             </ul>
         </li>
 
+
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="bx bxs-file"></i>
+                <span key="t-projects">Other Consigment List</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+
+                {{-- <li class="{{ Route::is('sub_category_type')  ? 'active' : '' }}"><a href="{{ route('sub_category_type') }}"> <span>Test Form</span> </a></li> --}}
+
+
+                @if ($usr->can('other_consigment_add'))
+                <li class="{{ Route::is('admin.other_consigment.create')  ? 'active' : '' }}"><a href="{{ route('admin.other_consigment.create') }}"> <span>Add Consigment </span> </a></li>
+           @endif
+
+
+           @if ($usr->can('other_consigment_add') || $usr->can('other_consigment_view') || $usr->can('other_consigment_delete') ||$usr->can('other_consigment_update') )
+                <li class="{{ Route::is('admin.other_consigment')  ? 'active' : '' }}"><a href="{{ route('admin.other_consigment') }}"> <span>Consigment List</span> </a></li>
+           @endif
+
+        </ul>
+    </li>
+
+
+
+    <li>
+        <a href="javascript: void(0);" class="has-arrow waves-effect">
+            <i class="bx bxs-file"></i>
+            <span key="t-projects">Sell To Shop</span>
+        </a>
+        <ul class="sub-menu" aria-expanded="false">
+
+            {{-- <li class="{{ Route::is('sub_category_type')  ? 'active' : '' }}"><a href="{{ route('sub_category_type') }}"> <span>Test Form</span> </a></li> --}}
+
+
+            @if ($usr->can('sell_to_shop_add'))
+            <li class="{{ Route::is('admin.sell_to_shop.create')  ? 'active' : '' }}"><a href="{{ route('admin.sell_to_shop.create') }}"> <span>Add To  Shop</span> </a></li>
+       @endif
+
+
+       @if ($usr->can('sell_to_shop_add') || $usr->can('sell_to_shop_view') || $usr->can('sell_to_shop_delete') ||$usr->can('sell_to_shop_update') )
+            <li class="{{ Route::is('admin.sell_to_shop')  ? 'active' : '' }}"><a href="{{ route('admin.sell_to_shop') }}"> <span>Sell Shop List List</span> </a></li>
+       @endif
+
+    </ul>
+</li>
 
 
 

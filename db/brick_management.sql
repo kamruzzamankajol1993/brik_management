@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2022 at 12:47 PM
+-- Generation Time: Nov 24, 2022 at 12:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -52,7 +52,8 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `ward_id`, `staff_id`, `staff_main_id`, `name`, `email`, `phone`, `username`, `email_verified_at`, `password`, `image`, `status`, `cstatus`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, NULL, '4004', NULL, 'superadmin', 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$P7XKbcdy.V46KeuF1PljgOoXXfAQvqjuZkPg71AyMlNUkdcWbBXjS', 'user-photo/1645269974.jpg', 1, 5, 'FG02fU5JUxwMYkzV3EyWJHZ8MixpTEkr4g8Motf3KkUXzlRZQzQ5COL0TSBB', '2021-03-24 05:29:53', '2022-02-19 05:26:14'),
-(2, NULL, NULL, NULL, 'admin', 'kajol1122018@gmail.com', NULL, NULL, NULL, '$2y$10$dSPMgoOjeaGN2C1kaNe1aeJFSr5wh5I8IWe0C5tIncxF2LUkp6toS', NULL, 1, 5, NULL, '2021-03-24 06:14:00', '2022-08-10 03:10:49');
+(2, NULL, NULL, NULL, 'admin', 'kajol1122018@gmail.com', NULL, NULL, NULL, '$2y$10$dSPMgoOjeaGN2C1kaNe1aeJFSr5wh5I8IWe0C5tIncxF2LUkp6toS', NULL, 1, 5, NULL, '2021-03-24 06:14:00', '2022-08-10 03:10:49'),
+(37, NULL, '2', NULL, 'Kamruzzaman kajol', 'm@gmail.com', NULL, NULL, NULL, '$2y$10$5grwvm3VicSU12V4m6kWBOT.PBDFWwDV06KRreOa8F.TS.AocT7kG', NULL, 1, 0, NULL, '2022-11-24 02:51:33', '2022-11-24 02:51:33');
 
 -- --------------------------------------------------------
 
@@ -76,8 +77,8 @@ CREATE TABLE `caranddrivers` (
 --
 
 INSERT INTO `caranddrivers` (`id`, `main_date`, `driver_name`, `car_number`, `contact_no`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-15', 'gg', '555', '6546456', '1', '2022-11-15 00:05:56', '2022-11-15 00:05:56'),
-(2, '2022-11-15', 'ttttt', '7777', '546456456', '1', '2022-11-15 00:06:35', '2022-11-15 00:06:35');
+(3, '2022-11-16', 'Rasel', '12345', '54322', '1', '2022-11-16 03:19:32', '2022-11-16 03:19:32'),
+(4, '2022-11-16', 'Ranu', '54443', '54543543', '1', '2022-11-16 03:19:48', '2022-11-16 03:19:48');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cat_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sub_cat` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `child_one` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `child_two` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `child_three` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -107,37 +108,9 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `image`, `cat_name`, `sub_cat`, `child_one`, `child_two`, `child_three`, `child_four`, `child_five`, `child_six`, `child_seven`, `child_eight`, `status`, `created_at`, `updated_at`) VALUES
-(9, NULL, 'Cosplay Products', 'Anime', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-12 05:19:09', '2022-08-12 05:19:09'),
-(15, NULL, 'Jewelry & Accessories', 'Headband', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-16 02:12:49', '2022-08-16 02:12:49'),
-(16, NULL, 'Shoes Collection', 'Casual Shoes', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-08-16 02:14:53', '2022-08-16 02:14:53'),
-(17, NULL, 'Women Collection', 'Crop Top', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 02:17:21', '2022-08-16 02:17:21'),
-(23, NULL, 'Panjabi Collection', 'Casual Punjabi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:32:34', '2022-08-16 06:32:34'),
-(24, NULL, 'Kids Collection', '1-5 Years', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:46:56', '2022-08-16 06:46:56'),
-(25, NULL, 'Jersey Collection', 'Half Sleeve', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:47:50', '2022-08-16 06:47:50'),
-(26, NULL, 'Denim Collection', 'Jeans', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:48:12', '2022-08-16 06:48:12'),
-(27, NULL, 'Shirt Collection', 'Half Sleeve Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:48:38', '2022-08-16 06:48:38'),
-(28, NULL, 'Winter Collection', 'Hoodie Collection', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:49:30', '2022-08-16 06:49:30'),
-(29, NULL, 'Bottom Wear', 'TROUSERS & JOGGERS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-16 06:49:45', '2022-08-16 06:49:45'),
-(33, NULL, 'T-Shirt Collection', 'Full Sleeve T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-08-17 01:56:16', '2022-08-17 01:56:16'),
-(42, NULL, 'T-Shirt Collection', 'Half Sleeve T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 15:49:59', '2022-11-07 15:49:59'),
-(43, NULL, 'T-Shirt Collection', 'Drop Shoulder T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 15:52:04', '2022-11-07 15:52:04'),
-(44, NULL, 'T-Shirt Collection', 'Polo T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 15:53:49', '2022-11-07 15:53:49'),
-(45, NULL, 'T-Shirt Collection', 'Raglan Full Sleeve T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 15:54:55', '2022-11-07 15:54:55'),
-(46, NULL, 'T-Shirt Collection', 'Raglan Half Sleeve T-Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 15:56:09', '2022-11-07 15:56:09'),
-(47, NULL, 'Denim Collection', 'Jeans', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 16:01:54', '2022-11-07 16:01:54'),
-(48, NULL, 'Winter Collection', 'Bomber Jacket', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 16:04:07', '2022-11-07 16:04:07'),
-(49, NULL, 'Winter Collection', 'Tracksuits', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:16:16', '2022-11-07 23:16:16'),
-(52, NULL, 'Shirt Collection', 'Full Sleeve Shirt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:22:49', '2022-11-07 23:22:49'),
-(53, NULL, 'Jersey Collection', 'Full Sleeve', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:26:47', '2022-11-07 23:26:47'),
-(54, NULL, 'Kids Collection', '6-10 Years', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:28:02', '2022-11-07 23:28:02'),
-(55, NULL, 'Panjabi Collection', 'Kabli Punjabi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:30:21', '2022-11-07 23:30:21'),
-(56, NULL, 'Jewelry & Accessories', 'Pendant Necklace', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:35:13', '2022-11-07 23:35:13'),
-(57, NULL, 'Jewelry & Accessories', 'Pendant Key Ring', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:35:38', '2022-11-07 23:35:38'),
-(58, NULL, 'Jewelry & Accessories', 'Bracelet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:36:00', '2022-11-07 23:36:00'),
-(59, NULL, 'Jewelry & Accessories', 'Note Book', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:36:17', '2022-11-07 23:36:17'),
-(60, NULL, 'Cosplay Products', 'DC/Marvel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:37:33', '2022-11-07 23:37:33'),
-(61, NULL, 'Cosplay Products', 'Others', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', '2022-11-07 23:37:45', '2022-11-07 23:37:45');
+INSERT INTO `categories` (`id`, `image`, `cat_name`, `main_date`, `child_one`, `child_two`, `child_three`, `child_four`, `child_five`, `child_six`, `child_seven`, `child_eight`, `status`, `created_at`, `updated_at`) VALUES
+(62, NULL, 'bricks', '2022-11-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2022-11-24 00:56:01', '2022-11-24 00:56:24'),
+(63, NULL, 'others', '2022-11-24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2022-11-24 00:56:11', '2022-11-24 00:56:11');
 
 -- --------------------------------------------------------
 
@@ -207,6 +180,7 @@ CREATE TABLE `consigment_details` (
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -215,9 +189,15 @@ CREATE TABLE `consigment_details` (
 -- Dumping data for table `consigment_details`
 --
 
-INSERT INTO `consigment_details` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(3, '1', 'ttt', '44', '44444', '2022-11-15 03:51:23', '2022-11-15 03:51:23'),
-(4, '1', 'eee', '3', '33333', '2022-11-15 03:51:23', '2022-11-15 03:51:23');
+INSERT INTO `consigment_details` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `status`, `created_at`, `updated_at`) VALUES
+(3, '1', 'ttt', '44', '44444', '2', '2022-11-15 03:51:23', '2022-11-15 03:51:23'),
+(4, '1', 'eee', '3', '33333', '2', '2022-11-15 03:51:23', '2022-11-15 03:51:23'),
+(5, '2', 'ttt', '33', '33', '1', '2022-11-16 03:04:29', '2022-11-16 03:09:05'),
+(6, '2', 'eee', '50', '900', '1', '2022-11-16 03:04:29', '2022-11-16 03:09:05'),
+(7, '3', 'Brick 3', '10', '1000', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21'),
+(8, '3', 'Brick 2', '10', '2000', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21'),
+(9, '4', 'Brick 1', '2', '400', NULL, '2022-11-24 04:36:57', '2022-11-24 04:36:57'),
+(10, '4', 'Brick 3', '2', '630', NULL, '2022-11-24 04:36:57', '2022-11-24 04:36:57');
 
 -- --------------------------------------------------------
 
@@ -247,7 +227,7 @@ CREATE TABLE `consignments` (
 --
 
 INSERT INTO `consignments` (`id`, `main_date`, `rmain_date`, `consignment_number`, `client_name`, `delivery_address`, `contact`, `select_truck`, `driver_name`, `driver_contact`, `request_type`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-15', '2022-11-15', '9HMCNJ25AX', 'Rajshahi', 'hfghfgh', '01646735100', '555', 'gg', '6546456', 'Normal', '2', '2022-11-15 02:52:31', '2022-11-15 04:09:23');
+(3, '2022-11-16', '2022-11-16', 'SFP8B5Y42X', 'Mr.Rahim', 'Rajshahi', '2333333', '54443', 'Ranu', '54543543', 'Normal', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21');
 
 -- --------------------------------------------------------
 
@@ -304,8 +284,9 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `main_date`, `product_name`, `lot_number`, `quantity`, `sell_quantity`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-14', 'eee', 'IJ591KYFTV', '70', NULL, '1', '2022-11-14 05:37:14', '2022-11-15 04:09:23'),
-(2, '2022-11-15', 'ttt', 'E35PHF2XTY', '7777', NULL, '1', '2022-11-15 01:42:49', '2022-11-15 04:09:23');
+(3, '2022-11-16', 'Brick 3', 'BE8T7945AJ', '4986', NULL, '1', '2022-11-16 03:16:41', '2022-11-24 04:39:54'),
+(4, '2022-11-16', 'Brick 1', 'D6HENQJR17', '5998', NULL, '1', '2022-11-16 03:17:15', '2022-11-24 04:36:57'),
+(5, '2022-11-16', 'Brick 2', '92E807C1J5', '8058', NULL, '1', '2022-11-16 03:17:47', '2022-11-24 04:39:54');
 
 -- --------------------------------------------------------
 
@@ -316,6 +297,7 @@ INSERT INTO `inventories` (`id`, `main_date`, `product_name`, `lot_number`, `qua
 CREATE TABLE `inventorynames` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alert_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -327,9 +309,10 @@ CREATE TABLE `inventorynames` (
 -- Dumping data for table `inventorynames`
 --
 
-INSERT INTO `inventorynames` (`id`, `main_date`, `product_name`, `alert_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2022-11-14', 'eee', '339', '1', '2022-11-14 05:00:43', '2022-11-14 05:37:00'),
-(2, '2022-11-15', 'ttt', '33', '1', '2022-11-15 01:42:36', '2022-11-15 01:42:36');
+INSERT INTO `inventorynames` (`id`, `main_date`, `category`, `product_name`, `alert_name`, `status`, `created_at`, `updated_at`) VALUES
+(3, '2022-11-16', 'bricks', 'Brick 1', '100', '1', '2022-11-16 03:15:53', '2022-11-24 01:10:09'),
+(4, '2022-11-16', 'bricks', 'Brick 2', '100', '1', '2022-11-16 03:16:10', '2022-11-24 01:10:04'),
+(5, '2022-11-16', 'bricks', 'Brick 3', '100', '1', '2022-11-16 03:16:25', '2022-11-24 01:08:10');
 
 -- --------------------------------------------------------
 
@@ -355,8 +338,8 @@ CREATE TABLE `mainclients` (
 --
 
 INSERT INTO `mainclients` (`id`, `name`, `address`, `email`, `phone`, `total_purchase`, `main_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Rajshahi', 'hfghfgh', 'kkajol428@gmail.com', '01646735100', NULL, '2022-11-15', '1', '2022-11-14 23:33:44', '2022-11-14 23:35:28'),
-(2, 'rtyr', 'rtyrty', 'rtyrt@rgtre.com', '01646735100', NULL, '2022-11-15', '1', '2022-11-14 23:35:47', '2022-11-14 23:35:47');
+(3, 'Mr. Karim', 'mirpur', 'm@gmail.com', '09989', NULL, '2022-11-16', '1', '2022-11-16 03:18:31', '2022-11-16 03:18:31'),
+(4, 'Mr.Rahim', 'Rajshahi', 'rrr@gmail.com', '2333333', NULL, '2022-11-16', '1', '2022-11-16 03:19:03', '2022-11-16 03:19:03');
 
 -- --------------------------------------------------------
 
@@ -435,7 +418,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (58, '2022_11_14_084231_create_releases_table', 24),
 (59, '2022_11_14_085506_create_consiproducts_table', 24),
 (60, '2022_11_15_053636_create_payments_table', 25),
-(61, '2022_11_15_061550_create_consigment_details_table', 26);
+(61, '2022_11_15_061550_create_consigment_details_table', 26),
+(62, '2022_11_16_094141_create_productquantities_table', 27),
+(63, '2022_11_24_071050_create_vendors_table', 28),
+(64, '2022_11_24_091935_create_otherconsigments_table', 29),
+(65, '2022_11_24_092027_create_otherconsigmentdetails_table', 29),
+(66, '2022_11_24_092112_create_selltoshops_table', 29),
+(67, '2022_11_24_092148_create_selltoshopdetails_table', 29);
 
 -- --------------------------------------------------------
 
@@ -477,7 +466,9 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (13, 'App\\Models\\Admin', 27),
 (13, 'App\\Models\\Admin', 28),
 (13, 'App\\Models\\Admin', 29),
-(13, 'App\\Models\\Admin', 30);
+(13, 'App\\Models\\Admin', 30),
+(14, 'App\\Models\\Admin', 36),
+(14, 'App\\Models\\Admin', 37);
 
 -- --------------------------------------------------------
 
@@ -493,6 +484,57 @@ CREATE TABLE `orderbies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otherconsigmentdetails`
+--
+
+CREATE TABLE `otherconsigmentdetails` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `consigment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `otherconsigmentdetails`
+--
+
+INSERT INTO `otherconsigmentdetails` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Brick 3', '2', '900', '2022-11-24 04:39:54', '2022-11-24 04:39:54'),
+(2, '1', 'Brick 2', '2', '500', '2022-11-24 04:39:54', '2022-11-24 04:39:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otherconsigments`
+--
+
+CREATE TABLE `otherconsigments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consignment_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `otherconsigments`
+--
+
+INSERT INTO `otherconsigments` (`id`, `name`, `consignment_number`, `client_name`, `delivery_address`, `contact`, `request_type`, `status`, `main_date`, `created_at`, `updated_at`) VALUES
+(1, NULL, '0193GRZ2FY', 'Kamruzzaman kajol', 'mirpur', '32423', 'Normal', '0', '2022-11-24', '2022-11-24 04:39:54', '2022-11-24 04:39:54');
 
 -- --------------------------------------------------------
 
@@ -526,7 +568,9 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `client_id`, `main_date`, `amount`, `created_at`, `updated_at`) VALUES
-(1, '2', '2022-11-15', '1080', '2022-11-15 05:21:56', '2022-11-15 05:21:56');
+(1, '2', '2022-11-15', '1080', '2022-11-15 05:21:56', '2022-11-15 05:21:56'),
+(2, '4', '2022-11-16', '9000', '2022-11-16 03:22:13', '2022-11-16 03:22:13'),
+(3, '4', '2022-11-16', '80000', '2022-11-16 03:27:00', '2022-11-16 03:27:00');
 
 -- --------------------------------------------------------
 
@@ -599,7 +643,23 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `app_url`, 
 (500, 'release_product_add', 'admin', 'release_product', 'admin/release_product_add', NULL, NULL),
 (501, 'release_product_view', 'admin', 'release_product', 'admin/release_product_view', NULL, NULL),
 (502, 'release_product_delete', 'admin', 'release_product', 'admin/release_product_delete', NULL, NULL),
-(503, 'release_product_update', 'admin', 'release_product', 'admin/release_product_update', NULL, NULL);
+(503, 'release_product_update', 'admin', 'release_product', 'admin/release_product_update', NULL, NULL),
+(504, 'category_add', 'admin', 'category', 'admin/category_add', NULL, NULL),
+(505, 'category_view', 'admin', 'category', 'admin/category_view', NULL, NULL),
+(506, 'category_delete', 'admin', 'category', 'admin/category_delete', NULL, NULL),
+(507, 'category_update', 'admin', 'category', 'admin/category_update', NULL, NULL),
+(508, 'vendor_add', 'admin', 'vendor', 'admin/vendor_add', NULL, NULL),
+(509, 'vendor_view', 'admin', 'vendor', 'admin/vendor_view', NULL, NULL),
+(510, 'vendor_delete', 'admin', 'vendor', 'admin/vendor_delete', NULL, NULL),
+(511, 'vendor_update', 'admin', 'vendor', 'admin/vendor_update', NULL, NULL),
+(512, 'other_consigment_add', 'admin', 'other_consigment', 'admin/other_consigment_add', NULL, NULL),
+(513, 'other_consigment_view', 'admin', 'other_consigment', 'admin/other_consigment_view', NULL, NULL),
+(514, 'other_consigment_delete', 'admin', 'other_consigment', 'admin/other_consigment_delete', NULL, NULL),
+(515, 'other_consigment_update', 'admin', 'other_consigment', 'admin/other_consigment_update', NULL, NULL),
+(516, 'sell_to_shop_add', 'admin', 'sell_to_shop', 'admin/sell_to_shop_add', NULL, NULL),
+(517, 'sell_to_shop_view', 'admin', 'sell_to_shop', 'admin/sell_to_shop_view', NULL, NULL),
+(518, 'sell_to_shop_delete', 'admin', 'sell_to_shop', 'admin/sell_to_shop_delete', NULL, NULL),
+(519, 'sell_to_shop_update', 'admin', 'sell_to_shop', 'admin/sell_to_shop_update', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -615,6 +675,21 @@ CREATE TABLE `personal_access_tokens` (
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productquantities`
+--
+
+CREATE TABLE `productquantities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -673,7 +748,8 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 (1, 'superadmin', 'admin', '2021-03-24 02:04:14', '2021-03-24 02:04:14'),
 (2, 'admin', 'admin', '2021-03-24 02:04:14', '2021-03-24 02:04:14'),
 (10, 'Teacher', 'admin', '2022-01-30 22:59:56', '2022-01-30 22:59:56'),
-(13, 'employee', 'admin', '2022-02-07 23:46:42', '2022-02-07 23:46:42');
+(13, 'employee', 'admin', '2022-02-07 23:46:42', '2022-02-07 23:46:42'),
+(14, 'vendor', 'admin', '2022-11-24 02:02:18', '2022-11-24 02:02:18');
 
 -- --------------------------------------------------------
 
@@ -695,10 +771,12 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 2),
 (1, 10),
 (1, 13),
+(1, 14),
 (2, 1),
 (2, 2),
 (2, 10),
 (2, 13),
+(2, 14),
 (8, 1),
 (9, 1),
 (10, 1),
@@ -711,8 +789,10 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (17, 1),
 (18, 1),
 (18, 2),
+(18, 14),
 (19, 1),
 (19, 2),
+(19, 14),
 (20, 1),
 (21, 1),
 (22, 1),
@@ -729,96 +809,6 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (356, 13),
 (357, 13),
 (358, 13),
-(390, 1),
-(391, 1),
-(392, 1),
-(393, 1),
-(394, 1),
-(395, 1),
-(396, 1),
-(397, 1),
-(398, 1),
-(399, 1),
-(400, 1),
-(401, 1),
-(402, 1),
-(403, 1),
-(404, 1),
-(405, 1),
-(406, 1),
-(407, 1),
-(408, 1),
-(409, 1),
-(410, 1),
-(411, 1),
-(412, 1),
-(413, 1),
-(414, 1),
-(415, 1),
-(416, 1),
-(417, 1),
-(418, 1),
-(419, 1),
-(420, 1),
-(421, 1),
-(422, 1),
-(423, 1),
-(424, 1),
-(425, 1),
-(426, 1),
-(427, 1),
-(428, 1),
-(429, 1),
-(430, 1),
-(431, 1),
-(432, 1),
-(433, 1),
-(434, 1),
-(435, 1),
-(436, 1),
-(437, 1),
-(438, 1),
-(439, 1),
-(440, 1),
-(441, 1),
-(442, 1),
-(443, 1),
-(444, 1),
-(445, 1),
-(446, 1),
-(447, 1),
-(448, 1),
-(449, 1),
-(450, 1),
-(451, 1),
-(452, 1),
-(453, 1),
-(454, 1),
-(455, 1),
-(456, 1),
-(457, 1),
-(458, 1),
-(459, 1),
-(460, 1),
-(461, 1),
-(462, 1),
-(463, 1),
-(464, 1),
-(465, 1),
-(466, 1),
-(467, 1),
-(468, 1),
-(469, 1),
-(470, 1),
-(471, 1),
-(472, 1),
-(473, 1),
-(474, 1),
-(475, 1),
-(476, 1),
-(477, 1),
-(478, 1),
-(479, 1),
 (480, 1),
 (481, 1),
 (482, 1),
@@ -842,7 +832,58 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (500, 1),
 (501, 1),
 (502, 1),
-(503, 1);
+(503, 1),
+(504, 1),
+(505, 1),
+(506, 1),
+(507, 1),
+(508, 1),
+(509, 1),
+(510, 1),
+(511, 1),
+(512, 1),
+(513, 1),
+(514, 1),
+(515, 1),
+(516, 1),
+(517, 1),
+(518, 1),
+(519, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `selltoshopdetails`
+--
+
+CREATE TABLE `selltoshopdetails` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `consigment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `selltoshops`
+--
+
+CREATE TABLE `selltoshops` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consignment_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `delivery_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `request_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -904,6 +945,8 @@ CREATE TABLE `units` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `admin_id` int(11) DEFAULT NULL,
+  `vendor_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -918,10 +961,37 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Kamruzzaman kajol', 'admin@gmail.com', '01646735100', NULL, '$2y$10$db/gIq04rutRaow6Ym.yJufvF3lJDEVILPQKo3i2EebPFIXsLa5YK', NULL, '2022-09-27 05:39:34', '2022-09-27 05:39:34'),
-(2, 'Nir Rony Hossain', 'ronyhossain1920@gmail.com', '01738300022', NULL, '$2y$10$dqDQsjofK97cGdMK/9pTjeFSpBjjFyFTw8DX6O6ih/KbaAeMj.G2G', NULL, '2022-10-09 17:29:17', '2022-10-09 17:29:17'),
-(4, 'Md. Irfan Hossain', 'rakinhasan.badhan33@gmail.com', '01234567981', NULL, '$2y$10$e0pAJKgLU2CxWVIw1UPI3OWKa7fcSmhv1Yrd4sB6y2Aon0RGjvLRK', NULL, '2022-11-08 12:12:57', '2022-11-08 12:12:57');
+INSERT INTO `users` (`id`, `admin_id`, `vendor_id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Kamruzzaman kajol', 'admin@gmail.com', '01646735100', NULL, '$2y$10$db/gIq04rutRaow6Ym.yJufvF3lJDEVILPQKo3i2EebPFIXsLa5YK', NULL, '2022-09-27 05:39:34', '2022-09-27 05:39:34'),
+(2, NULL, NULL, 'Nir Rony Hossain', 'ronyhossain1920@gmail.com', '01738300022', NULL, '$2y$10$dqDQsjofK97cGdMK/9pTjeFSpBjjFyFTw8DX6O6ih/KbaAeMj.G2G', NULL, '2022-10-09 17:29:17', '2022-10-09 17:29:17'),
+(4, NULL, NULL, 'Md. Irfan Hossain', 'rakinhasan.badhan33@gmail.com', '01234567981', NULL, '$2y$10$e0pAJKgLU2CxWVIw1UPI3OWKa7fcSmhv1Yrd4sB6y2Aon0RGjvLRK', NULL, '2022-11-08 12:12:57', '2022-11-08 12:12:57'),
+(6, 37, 2, 'Kamruzzaman kajol', 'm@gmail.com', NULL, NULL, '$2y$10$qZPs7qb3dt3sYDttkutDoeidwXRnd59Z2ZRCe7r7wEV9e4r7pxdmO', NULL, '2022-11-24 02:51:33', '2022-11-24 02:51:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendors`
+--
+
+CREATE TABLE `vendors` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `creator_id` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `vendors`
+--
+
+INSERT INTO `vendors` (`id`, `role_name`, `creator_id`, `name`, `main_date`, `address`, `phone`, `email`, `created_at`, `updated_at`) VALUES
+(2, 'vendor', '1', 'Kamruzzaman kajol', '2022-11-24', 'mirpur', '32423', 'm@gmail.com', '2022-11-24 02:51:33', '2022-11-24 02:51:33');
 
 --
 -- Indexes for dumped tables
@@ -1029,6 +1099,18 @@ ALTER TABLE `orderbies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `otherconsigmentdetails`
+--
+ALTER TABLE `otherconsigmentdetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `otherconsigments`
+--
+ALTER TABLE `otherconsigments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1054,6 +1136,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `productquantities`
+--
+ALTER TABLE `productquantities`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `releases`
@@ -1082,6 +1170,18 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `selltoshopdetails`
+--
+ALTER TABLE `selltoshopdetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `selltoshops`
+--
+ALTER TABLE `selltoshops`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -1107,6 +1207,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `vendors`
+--
+ALTER TABLE `vendors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `vendors_email_unique` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1114,19 +1221,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `caranddrivers`
 --
 ALTER TABLE `caranddrivers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `category_banners`
@@ -1144,13 +1251,13 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `consigment_details`
 --
 ALTER TABLE `consigment_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `consignments`
 --
 ALTER TABLE `consignments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `consiproducts`
@@ -1168,25 +1275,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `inventorynames`
 --
 ALTER TABLE `inventorynames`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mainclients`
 --
 ALTER TABLE `mainclients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `orderbies`
@@ -1195,22 +1302,40 @@ ALTER TABLE `orderbies`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `otherconsigmentdetails`
+--
+ALTER TABLE `otherconsigmentdetails`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `otherconsigments`
+--
+ALTER TABLE `otherconsigments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=504;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=520;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productquantities`
+--
+ALTER TABLE `productquantities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `releases`
@@ -1228,7 +1353,19 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `selltoshopdetails`
+--
+ALTER TABLE `selltoshopdetails`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `selltoshops`
+--
+ALTER TABLE `selltoshops`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -1252,7 +1389,13 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `vendors`
+--
+ALTER TABLE `vendors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

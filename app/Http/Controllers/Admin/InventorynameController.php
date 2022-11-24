@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use DB;
 use App\Models\Brand;
 use App\Models\Inventoryname;
+use App\Models\Category;
 class InventorynameController extends Controller
 {
     public $user;
@@ -33,7 +34,9 @@ class InventorynameController extends Controller
 
         $inventory_names = Inventoryname::latest()->get();
 
-        return view('backend.inventory_name.index',compact('inventory_names'));
+        $category_list_all = Category::latest()->get();
+
+        return view('backend.inventory_name.index',compact('inventory_names','category_list_all'));
     }
 
 
@@ -45,6 +48,7 @@ class InventorynameController extends Controller
 
         $category_list = new Inventoryname();
         $category_list->main_date = $request->main_date;
+        $category_list->category = $request->category;
         $category_list->product_name = $request->product_name;
         $category_list->alert_name = $request->alert_name;
         $category_list->status = $request->status;
@@ -63,6 +67,7 @@ class InventorynameController extends Controller
 
         $category_list = Inventoryname::find($request->id);
         $category_list->main_date = $request->main_date;
+        $category_list->category = $request->category;
         $category_list->product_name = $request->product_name;
         $category_list->alert_name = $request->alert_name;
         $category_list->status = $request->status;

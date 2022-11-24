@@ -1,7 +1,7 @@
 @extends('backend.master.master')
 
 @section('title')
-Inventory Name List |{{ $ins_name }}
+Vendor  List |{{ $ins_name }}
 @endsection
 
 
@@ -15,7 +15,7 @@ Inventory Name List |{{ $ins_name }}
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0">Inventory Name  List</h4>
+            <h4 class="mb-0">Vendor   List</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
@@ -32,9 +32,9 @@ Inventory Name List |{{ $ins_name }}
                         <div class="col-sm-6">
                             <div class="float-right d-md-block">
                                 <div class="dropdown">
-                                @if (Auth::guard('admin')->user()->can('inventory_name_add'))
+                                @if (Auth::guard('admin')->user()->can('vendor_add'))
 <button class="btn btn-primary dropdown-toggle waves-effect  btn-sm waves-light" type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg">
-                                        <i class="far fa-calendar-plus  mr-2"></i> Add New Inventory Name
+                                        <i class="far fa-calendar-plus  mr-2"></i> Add New Vendor
                                     </button>
 @endif
                                 </div>
@@ -55,50 +55,35 @@ Inventory Name List |{{ $ins_name }}
                                         <thead>
                                             <tr>
                                                <th>SL</th>
-                                               <th>Category</th>
-                                    <th>Name</th>
-
-                                    <th>Alert Quantity</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
+                                    <th>Vendor Name</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                   <th>Created At</th>
                                     <th>Action</th>
                                             </tr>
                                         </thead>
 
 
                                         <tbody>
-                                            @foreach ($inventory_names as $user)
+                                            @foreach ($vendor_lists as $user)
 
 
                                 <tr>
                                    <td>{{ $loop->index+1 }}</td>
-                                   <td>{{ $user->category }}</td>
-                                    <td>{{ $user->product_name }}</td>
-                                    <td>{{ $user->alert_name }}</td>
+                                   <td>{{ $user->name }}</td>
+                                    <td>{{ $user->address }}</td>
+                                    <td>{{ $user->email }}</td>
 
+                                    <td>{{ $user->phone }}</td>
 
-                                    <td>
-
-                                        @if($user->status == 1)
-
-
-                                        <span class="badge bg-success mt-1">
-                                            Active
-                                         </span>
-
-
-                                        @else
-
-                                        <span class="badge bg-danger mt-1">
-                                           Inactive
-                                        </span>
-                                      @endif
-                                    </td>
 
                                     <td>{{ date('d-m-Y', strtotime($user->main_date)) }}</td>
 
                                     <td>
-                                      @if (Auth::guard('admin')->user()->can('inventory_name_update'))
+
+
+                                      @if (Auth::guard('admin')->user()->can('vendor_update'))
                                           <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $user->id }}"
                                           class="btn btn-primary waves-light waves-effect  btn-sm" >
                                           <i class="fas fa-pencil-alt"></i></button>
@@ -108,60 +93,48 @@ Inventory Name List |{{ $ins_name }}
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="myLargeModalLabel">Update Inventory Name</h5>
+                                                            <h5 class="modal-title" id="myLargeModalLabel">Update Vendor </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ route('admin.inventory_name.update') }}" method="POST" enctype="multipart/form-data">
+                                                            <form action="{{ route('admin.vendor.update') }}" method="POST" enctype="multipart/form-data">
 
                                                                 @csrf
                                                                 <div class="row">
-                                                                    <div class="form-group col-md-6 col-sm-12">
+                                                                    <div class="form-group col-md-4 col-sm-12">
                                                                         <label for="name">Date</label>
                                                         <input type="date" class="form-control form-control-sm" id="name" name="main_date" placeholder="Enter Name" value="{{ $user->main_date }}">
 
                                                         <input type="hidden" class="form-control form-control-sm" id="name" name="id" placeholder="Enter Name" value="{{ $user->id }}">
                                                                     </div>
 
+                                                                    <div class="form-group col-md-4 col-sm-12">
+                                                                        <label for="email">Name</label>
+                                                                        <input type="text" class="form-control form-control-sm" id="email" name="name" placeholder="Enter Name" value="{{ $user->name }}">
+                                                                    </div>
+
+                                                                     <div class="form-group col-md-4 col-sm-12">
+                                                                        <label for="email">Address</label>
+                                                                        <input type="text" class="form-control form-control-sm" id="email" name="address" placeholder="Enter Address" value="{{ $user->address }}">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row mt-2">
+                                                                    <div class="form-group col-md-6 col-sm-12">
+                                                                        <label for="email1">Email</label>
+                                                                        <input type="email" class="form-control form-control-sm" id="email1" name="email" placeholder="Enter Email" value="{{ $user->email }}">
+                                                                    </div>
 
                                                                     <div class="form-group col-md-6 col-sm-12">
-                                                                        <label for="email">Category</label>
-
-                                                                        <select class="form-control form-control-sm" id="email" name="category">
-                                                                            <option>--- Select Category --- </option>
-
-                                                                            @foreach ($category_list_all as $all_category_list_all)
-
-                                                                            <option value="{{ $all_category_list_all->cat_name }}" {{ $all_category_list_all->cat_name == $user->category ? 'selected':'' }}>{{ $all_category_list_all->cat_name }}</option>
-
-                            @endforeach
-
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group col-md-6 col-sm-12">
-                                                                        <label for="email">Product Name</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="email" name="product_name" placeholder="Enter Product Name" value="{{ $user->product_name }}">
-                                                                    </div>
-                                                                     <div class="form-group col-md-6 col-sm-12">
-                                                                        <label for="email">Alert Quantity</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="email" name="alert_name" placeholder="Enter Alert Name" value="{{ $user->alert_name }}">
+                                                                        <label for="email1">Phone</label>
+                                                                        <input type="number" class="form-control form-control-sm" id="email1" name="phone" placeholder="Enter Phone" value="{{ $user->phone }}">
                                                                     </div>
                                                                 </div>
 
 
 
-                                                                <div class="row">
 
-                                                                    <div class="form-group col-md-12 col-sm-12">
-                                                                        <label for="password">Status</label>
-                                                                        <select name="status" class="form-control form-control-sm" >
-
-                                                                                <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Active</option>
-                                                                                <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>InActive</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
 
                                                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update</button>
                                                             </form>
@@ -175,10 +148,10 @@ Inventory Name List |{{ $ins_name }}
 
 {{-- <button type="button" class="btn btn-primary waves-light waves-effect  btn-sm" onclick="window.location.href='{{ route('admin.users.view',$user->id) }}'"><i class="fa fa-eye"></i></button> --}}
 
-                                  @if (Auth::guard('admin')->user()->can('inventory_name_delete'))
+                                  @if (Auth::guard('admin')->user()->can('vendor_delete'))
 
 <button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm" onclick="deleteTag({{ $user->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                    <form id="delete-form-{{ $user->id }}" action="{{ route('admin.inventory_name.delete',$user->id) }}" method="POST" style="display: none;">
+                    <form id="delete-form-{{ $user->id }}" action="{{ route('admin.vendor.delete',$user->id) }}" method="POST" style="display: none;">
                       @method('DELETE')
                                                     @csrf
 
@@ -205,12 +178,12 @@ Inventory Name List |{{ $ins_name }}
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Add New Inventory Name</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Add New Vendor </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
-                <form class="custom-validation" action="{{ route('admin.inventory_name.store') }}" method="post" enctype="multipart/form-data">
+                <form class="custom-validation" action="{{ route('admin.vendor.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                       <div class="row">
 
@@ -220,53 +193,47 @@ Inventory Name List |{{ $ins_name }}
 
 
                                     <div class="row">
-                                        <div class="form-group col-md-6 col-sm-12">
+                                        <div class="form-group col-md-4 col-sm-12">
                                             <label for="name">Date</label>
-                            <input type="date" class="form-control form-control-sm" id="name" value="<?php echo date('Y-m-d'); ?>" name="main_date" placeholder="Enter Date" >
+                            <input type="date" class="form-control form-control-sm" id="name" name="main_date" placeholder="Enter Name" value="<?php echo date('Y-m-d');?>">
 
 
                                         </div>
 
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="email">Category</label>
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email">Name</label>
+                                            <input type="text" class="form-control form-control-sm" id="email" name="name" placeholder="Enter Name" >
+                                        </div>
 
-                                            <select class="form-control form-control-sm" id="email" name="category">
-                                                <option>--- Select Category --- </option>
+                                         <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email">Address</label>
+                                            <input type="text" class="form-control form-control-sm" id="email" name="address" placeholder="Enter Address" >
+                                        </div>
+                                    </div>
 
-                                                @foreach ($category_list_all as $all_category_list_all)
+                                    <div class="row mt-2">
 
-                                                <option value="{{ $all_category_list_all->cat_name }}">{{ $all_category_list_all->cat_name }}</option>
-
-@endforeach
-
-                                            </select>
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email1">Role</label>
+                                            <input type="text" class="form-control form-control-sm" id="email1" name="role_name" value="{{ $fixed_role_name }}" placeholder="Enter Role" readonly>
                                         </div>
 
 
 
-                                        <div class="form-group col-md-6 col-sm-12">
-                                            <label for="email">Product Name</label>
-                                            <input type="text" class="form-control form-control-sm" id="email" name="product_name" placeholder="Enter Product Name" >
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email1">Email</label>
+                                            <input type="email" class="form-control form-control-sm" id="email1" name="email" placeholder="Enter Email" >
                                         </div>
-                                         <div class="form-group col-md-6 col-sm-12">
-                                            <label for="email">Alert Quantity</label>
-                                            <input type="text" class="form-control form-control-sm" id="email" name="alert_name" placeholder="Enter Alert Quantity" >
+
+                                        <div class="form-group col-md-4 col-sm-12">
+                                            <label for="email1">Phone</label>
+                                            <input type="number" class="form-control form-control-sm" id="email1" name="phone" placeholder="Enter Phone" >
                                         </div>
                                     </div>
 
 
 
-                                    <div class="row">
 
-                                        <div class="form-group col-md-12 col-sm-12">
-                                            <label for="password">Status</label>
-                                            <select name="status" class="form-control form-control-sm" >
-
-                                                    <option value="1" >Active</option>
-                                                    <option value="0" >InActive</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
 
                                   </div>
