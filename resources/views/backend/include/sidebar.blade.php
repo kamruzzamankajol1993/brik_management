@@ -17,6 +17,8 @@
                         <span key="t-dashboard">Dashboards</span>
                     </a>
                 </li>
+
+                @if ($usr->can('inventory_add') || $usr->can('inventory_view') || $usr->can('inventory_delete') ||$usr->can('inventory_update') )
                 <li class="menu-title" key="t-apps">Inventory Section</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -50,6 +52,9 @@
 
                 </ul>
             </li>
+            @endif
+
+            @if ($usr->can('main_client_add') || $usr->can('main_client_view') || $usr->can('main_client_delete') ||$usr->can('main_client_update') )
 
             <li class="menu-title" key="t-apps">Client Section</li>
 
@@ -70,6 +75,9 @@
                 </a>
             </li>
             @endif
+            @endif
+
+            @if ($usr->can('car_and_driver_add') || $usr->can('car_and_driver_view') || $usr->can('car_and_driver_delete') ||$usr->can('car_and_driver_update') )
 
             <li class="menu-title" key="t-apps">Car & Driver</li>
 
@@ -81,7 +89,8 @@
                 </a>
             </li>
             @endif
-
+@endif
+@if ($usr->can('consigment_add') || $usr->can('consigment_view') || $usr->can('consigment_delete') ||$usr->can('consigment_update') )
 
             <li>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -116,8 +125,8 @@
             </ul>
         </li>
 
-
-
+@endif
+@if ($usr->can('other_consigment_add') || $usr->can('other_consigment_view') || $usr->can('other_consigment_delete') ||$usr->can('other_consigment_update') )
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="bx bxs-file"></i>
@@ -140,7 +149,7 @@
         </ul>
     </li>
 
-
+@endif
 
     <li>
         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -163,9 +172,18 @@
 
     </ul>
 </li>
+<li class="menu-title" key="t-apps">Report</li>
 
+@if ($usr->can('sell_report_add') || $usr->can('sell_report_view'))
+            <li class="{{ Route::is('sell_report') ? 'active' : '' }}">
+                <a href="{{ route('sell_report') }}" class="waves-effect">
+                    <i class="bx bx-note"></i>
+                    <span key="t-dashboard">Sell Report</span>
+                </a>
+            </li>
+ @endif
 
-
+@if ($usr->can('system_information_add') || $usr->can('system_information_view') ||  $usr->can('system_information_update') ||  $usr->can('system_information_delete'))
 
                 <li class="menu-title" key="t-apps">Settings</li>
                 <li>
@@ -206,6 +224,7 @@
                         <li><a href="projects-create.html" key="t-create-new">Create New</a></li> --}}
                     </ul>
                 </li>
+                @endif
             </ul>
         </div>
         <!-- Sidebar -->

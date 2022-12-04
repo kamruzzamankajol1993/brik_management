@@ -186,13 +186,13 @@ $usr = Auth::guard('admin')->user();
                             class="bx bx-wrench font-size-16 align-middle me-1"></i> <span
                             key="t-settings">Settings</span></a>
 @endif
-<a class="dropdown-item" href="{{ route('admin.lock_screen',Auth::guard('admin')->user()->email) }}">
+{{-- <a class="dropdown-item" href="{{ route('admin.lock_screen',Auth::guard('admin')->user()->email) }}">
 
 
     <i class="bx bx-lock-open font-size-16 align-middle me-1"></i>
     <span key="t-lock-screen">Lock screen</span>
 
-</a>
+</a> --}}
 
 
                     <div class="dropdown-divider"></div>

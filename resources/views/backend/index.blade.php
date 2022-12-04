@@ -23,7 +23,12 @@ Dashboard
     </div>
 </div>
 <!-- end page title -->
+<?php
 
+$get_role_id = DB::table('model_has_roles')
+                    ->where('model_id',Auth::guard('admin')->user()->id)->value('role_id');
+
+?>
 <div class="row">
     <div class="col-xl-4">
         <div class="card bg-primary bg-soft">
@@ -44,6 +49,7 @@ Dashboard
             </div>
         </div>
     </div>
+    @if($get_role_id == 1)
     <div class="col-xl-8">
         <div class="row">
             <div class="col-sm-3">
@@ -126,8 +132,9 @@ Dashboard
         </div>
         <!-- end row -->
     </div>
+    @endif
 </div>
-
+@if($get_role_id == 1)
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
@@ -293,5 +300,5 @@ Dashboard
 
 </div>
 
-
+@endif
 @endsection

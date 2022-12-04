@@ -90,6 +90,39 @@ class OtherConsigmentController extends Controller
     }
 
 
+    public function return_quantity_other_consigment(Request $request){
+
+
+        $catch_previous_value_first = Otherconsigmentdetail::where('client_name',$request->client_name)
+        ->where('product_name',$request->product_name)
+        ->value('quantity');
+
+        $get_result_first = $catch_previous_value_first - $request->quantity;
+
+
+
+        $catch_previous_value1_first =Otherconsigmentdetail::where('client_name',$request->client_name)
+        ->where('product_name',$request->product_name)
+->update([
+'quantity' => $get_result_first
+]);
+
+
+
+
+        $catch_previous_value = Inventory::where('product_name',$request->product_name)
+        ->value('quantity');
+$get_result = $catch_previous_value + $request->quantity;
+
+
+
+
+return redirect()->back()->with('success','Return Successfully');
+
+
+    }
+
+
     public function get_vendor_name(Request $request){
 
         $client_lists = Vendor::where('name',$request->main_value)->latest()->get();
@@ -128,7 +161,7 @@ class OtherConsigmentController extends Controller
 
             $form->quantity=$input['p_quantity'][$key];
             $form->price=$input['unit_price'][$key];
-
+            $form->client_name = $request->client_name;
             $form->consigment_id =  $invoice_id;
 
             $form->save();
@@ -184,7 +217,7 @@ class OtherConsigmentController extends Controller
 
         $form->quantity=$input['p_quantity'][$key];
         $form->price=$input['unit_price'][$key];
-
+        $form->client_name = $request->client_name;
         $form->consigment_id =  $invoice_id;
 
         $form->save();

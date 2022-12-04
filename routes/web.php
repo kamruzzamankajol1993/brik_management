@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\ReleaseController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\OtherConsigmentController;
 use App\Http\Controllers\Admin\SelltoshopController;
+use App\Http\Controllers\Admin\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
+    ///report
+
+    Route::get('/get_search_data', [ReportController::class, 'get_search_data'])->name('get_search_data');
+
+    Route::get('/sell_report', [ReportController::class, 'sell_report'])->name('sell_report');
+    Route::get('/brick_sell_report', [ReportController::class, 'brick_sell_report'])->name('brick_sell_report');
+    Route::get('/other_sell_report', [ReportController::class, 'other_sell_report'])->name('other_sell_report');
+    Route::get('/client_report', [ReportController::class, 'client_report'])->name('client_report');
+
+    ///end all report
 
 
 
@@ -164,6 +177,12 @@ Route::group(['prefix' => 'admin'], function () {
 
 
      Route::get('consigment', [ConsigmentController ::class, 'index'])->name('admin.consigment');
+
+
+
+
+
+
      Route::get('consigment/search', [ConsigmentController ::class, 'search'])->name('admin.consigment.search');
      Route::get('consigment/create', [ConsigmentController ::class, 'create'])->name('admin.consigment.create');
      Route::post('consigment/store', [ConsigmentController ::class, 'store'])->name('admin.consigment.store');
@@ -174,6 +193,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 
      Route::get('get_vendor_name', [OtherConsigmentController ::class, 'get_vendor_name'])->name('get_vendor_name');
+
+
+
+     Route::post('return_quantity_other_consigment', [OtherConsigmentController ::class, 'return_quantity_other_consigment'])->name('return_quantity_other_consigment');
 
 
 
@@ -199,6 +222,10 @@ Route::group(['prefix' => 'admin'], function () {
      Route::get('sell_to_shop/create', [SelltoshopController ::class, 'create'])->name('admin.sell_to_shop.create');
      Route::post('sell_to_shop/store', [SelltoshopController ::class, 'store'])->name('admin.sell_to_shop.store');
      Route::get('sell_to_shop/edit/{id}', [SelltoshopController ::class, 'edit'])->name('admin.sell_to_shop.edit');
+
+     Route::get('sell_to_shop/view/{id}', [SelltoshopController ::class, 'view'])->name('admin.sell_to_shop.view');
+     Route::get('sell_to_shop/print/{id}', [SelltoshopController ::class, 'print'])->name('admin.sell_to_shop.print');
+
      Route::post('sell_to_shop/update', [SelltoshopController ::class, 'update'])->name('admin.sell_to_shop.update');
      Route::delete('sell_to_shop/delete/{id}', [SelltoshopController ::class, 'delete'])->name('admin.sell_to_shop.delete');
 

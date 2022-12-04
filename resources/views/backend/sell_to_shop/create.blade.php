@@ -21,7 +21,7 @@ Sell To Shop |{{ $ins_name }}
 
 </div>
 <!-- end page title -->
-<form action="{{ route('admin.other_consigment.store') }}" method="post" >
+<form action="{{ route('admin.sell_to_shop.store') }}" method="post" >
     @csrf
     <div class="row">
         <div class="col-lg-8">
@@ -46,6 +46,18 @@ Sell To Shop |{{ $ins_name }}
                         </div>
                     </div>
 
+
+                    <?php
+
+                    $get_role_id = DB::table('model_has_roles')
+                    ->where('model_id',Auth::guard('admin')->user()->id)->value('role_id');
+
+
+
+                    ?>
+
+                    @if($get_role_id == 1)
+
                     <div class="form-group row mt-2">
                         <label for="" class="col-sm-4 col-form-label">Select Vendor</label>
                         <div class="col-sm-8">
@@ -57,6 +69,16 @@ Sell To Shop |{{ $ins_name }}
                             </select>
                         </div>
                     </div>
+                    @else
+
+                    <div class="form-group row mt-2">
+                        <label for="" class="col-sm-4 col-form-label">Vendor Name</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" value="{{ Auth::guard('admin')->user()->name }}" type="text" name="client_name" id="client_name" readonly>
+                        </div>
+                    </div>
+
+                    @endif
 
 
                     <div class="form-group row mt-2">
@@ -92,9 +114,73 @@ Sell To Shop |{{ $ins_name }}
 
                     <p class="card-title-desc mt-5">Enter The Requested Product</p>
 
+                    @if($get_role_id == 1)
+
                     <div class="row" id="get_all_informationcc">
 
                     </div>
+                    @else
+
+
+                    <?php
+
+$consigment_main_detail = DB::table('otherconsigmentdetails')->where('client_name',Auth::guard('admin')->user()->name)->get();
+
+
+?>
+                    <div class="row" >
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle table-nowrap table-check" id="dynamicAddRemove">
+                                            <thead class="table-light">
+                                            <tr>
+                                                <th style="width:200px"> Product Name</th>
+
+                                                <th>Qty</th>
+
+
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+
+                                                <td style="width:200px">
+                                                    <select class=" form-control main_product_id select2" name="main_product_id[]" id="main_product_id0" >
+                                                        <option value="0">Please Select</option>
+                                                        @foreach($consigment_main_detail as $all_inventory_lists)
+                                                        <option value="{{ $all_inventory_lists->product_name }}">{{ $all_inventory_lists->product_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+
+                                                <td><input type="number" min="1" class="form-control p_quantity" name="p_quantity[]" id="p_quantity0" placeholder="Quantity"></td>
+
+
+                                                <td>
+                                                    {{-- <div class="d-flex gap-3">
+                                                        <a href="javascript:void(0);" class="text-danger"><i
+                                                                    class="mdi mdi-delete-forever font-size-22"></i></a>
+                                                    </div> --}}
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <button id="main_add_new_product" type="button" class="btn btn-light waves-effect btn-label waves-light"><i
+                                                    class="bx bx-plus-medical label-icon "></i> Add New Product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @endif
 
                     <div class="row">
                         <div class="col-12">
@@ -126,6 +212,8 @@ Sell To Shop |{{ $ins_name }}
     </div> <!-- end row -->
 </form>
 @endsection
+
+@if($get_role_id == 1)
 
 
 
@@ -170,5 +258,23 @@ $("#get_all_informationt").html(data);
 
 </script>
 @endsection
+@else
+
+@section('script')
+<script type="text/javascript">
+    var i = 0;
+    $("#main_add_new_product").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr><td style="width:200px"><select class=" form-control main_product_id select2" name="main_product_id[]" id="main_product_id'+i+'" ><option value="0">Please Select</option>@foreach($consigment_main_detail as $all_inventory_lists)<option value="{{ $all_inventory_lists->product_name }}">{{ $all_inventory_lists->product_name }}</option>@endforeach</select></td><td><input type="number" min="1" class="form-control p_quantity" name="p_quantity[]" id="p_quantity'+i+'" placeholder="Quantity"></td> <td><button type="button" class="btn btn-sm btn-outline-danger remove-input-field"><i class="mdi mdi-delete-forever font-size-22"></i></button></td></tr>'
+            );
+            $('.select2').select2();
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
+@endsection
+
+@endif
 
 
