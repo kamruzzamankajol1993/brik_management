@@ -67,12 +67,40 @@ Route::group(['prefix' => 'admin'], function () {
 
     ///report
 
+    Route::get('/monthly_search_result_to_get_data', [ReportController::class, 'monthly_search_result_to_get_data'])->name('monthly_search_result_to_get_data');
+    Route::get('/yearly_search_result_to_get_data', [ReportController::class, 'yearly_search_result_to_get_data'])->name('yearly_search_result_to_get_data');
+    Route::get('/datewise_search_result_to_get_data', [ReportController::class, 'datewise_search_result_to_get_data'])->name('datewise_search_result_to_get_data');
+
+
+
+
+    Route::get('/other_monthly_search_result_to_get_data', [ReportController::class, 'other_monthly_search_result_to_get_data'])->name('other_monthly_search_result_to_get_data');
+    Route::get('/other_yearly_search_result_to_get_data', [ReportController::class, 'other_yearly_search_result_to_get_data'])->name('other_yearly_search_result_to_get_data');
+    Route::get('/other_datewise_search_result_to_get_data', [ReportController::class, 'other_datewise_search_result_to_get_data'])->name('other_datewise_search_result_to_get_data');
+
+
+
+
+    Route::get('/clientReport_monthly_search_result_to_get_data', [ReportController::class, 'clientReport_monthly_search_result_to_get_data'])->name('clientReport_monthly_search_result_to_get_data');
+    Route::get('/clientReport_yearly_search_result_to_get_data', [ReportController::class, 'clientReport_yearly_search_result_to_get_data'])->name('clientReport_yearly_search_result_to_get_data');
+    Route::get('/clientReport_datewise_search_result_to_get_data', [ReportController::class, 'clientReport_datewise_search_result_to_get_data'])->name('clientReport_datewise_search_result_to_get_data');
+
+
+
+    Route::get('/vendorReport_monthly_search_result_to_get_data', [ReportController::class, 'vendorReport_monthly_search_result_to_get_data'])->name('vendorReport_monthly_search_result_to_get_data');
+    Route::get('/vendorReport_yearly_search_result_to_get_data', [ReportController::class, 'vendorReport_yearly_search_result_to_get_data'])->name('vendorReport_yearly_search_result_to_get_data');
+    Route::get('/vendorReport_datewise_search_result_to_get_data', [ReportController::class, 'vendorReport_datewise_search_result_to_get_data'])->name('vendorReport_datewise_search_result_to_get_data');
+
+
+
+
     Route::get('/get_search_data', [ReportController::class, 'get_search_data'])->name('get_search_data');
 
     Route::get('/sell_report', [ReportController::class, 'sell_report'])->name('sell_report');
     Route::get('/brick_sell_report', [ReportController::class, 'brick_sell_report'])->name('brick_sell_report');
     Route::get('/other_sell_report', [ReportController::class, 'other_sell_report'])->name('other_sell_report');
     Route::get('/client_report', [ReportController::class, 'client_report'])->name('client_report');
+    Route::get('/vendor_report', [ReportController::class, 'vendor_report'])->name('vendor_report');
 
     ///end all report
 

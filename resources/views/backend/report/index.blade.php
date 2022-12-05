@@ -30,15 +30,19 @@ Sell Report |{{ $ins_name }}
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <center><a  href="{{ route('brick_sell_report') }}" type="button" class="btn btn-info">Brick Sell Report</a></center>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <center><a href="{{ route('other_sell_report') }}" type="button" class="btn btn-success">Other Sell Report</a></center>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <center><a href="{{ route('client_report') }}" type="button" class="btn btn-primary">Client Report</a></center>
+    </div>
+
+    <div class="col-md-3">
+        <center><a href="{{ route('vendor_report') }}" type="button" class="btn btn-warning">Vendor Report</a></center>
     </div>
     </div>
 @endsection

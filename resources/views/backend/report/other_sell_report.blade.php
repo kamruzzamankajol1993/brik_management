@@ -102,7 +102,7 @@ success: function(data) {
 
 
         $.ajax({
-url: "{{ route('monthly_search_result_to_get_data') }}",
+url: "{{ route('other_monthly_search_result_to_get_data') }}",
 method: 'GET',
 data: {month_name:month_name,year_name:year_name},
 success: function(data) {
@@ -121,7 +121,7 @@ if(search_type =='yearly'){
 
 
     $.ajax({
-url: "{{ route('yearly_search_result_to_get_data') }}",
+url: "{{ route('other_yearly_search_result_to_get_data') }}",
 method: 'GET',
 data: {year_name:year_name},
 success: function(data) {
@@ -142,7 +142,7 @@ if(search_type =='datewise'){
 
 
    $.ajax({
-url: "{{ route('datewise_search_result_to_get_data') }}",
+url: "{{ route('other_datewise_search_result_to_get_data') }}",
 method: 'GET',
 data: {from_date:from_date,to_date:to_date},
 success: function(data) {

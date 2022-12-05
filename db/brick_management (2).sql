@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2022 at 12:26 PM
+-- Generation Time: Dec 05, 2022 at 11:27 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -51,7 +51,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `ward_id`, `staff_id`, `staff_main_id`, `name`, `email`, `phone`, `username`, `email_verified_at`, `password`, `image`, `status`, `cstatus`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, '4004', NULL, 'superadmin', 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$P7XKbcdy.V46KeuF1PljgOoXXfAQvqjuZkPg71AyMlNUkdcWbBXjS', 'user-photo/1645269974.jpg', 1, 5, 'FG02fU5JUxwMYkzV3EyWJHZ8MixpTEkr4g8Motf3KkUXzlRZQzQ5COL0TSBB', '2021-03-24 05:29:53', '2022-02-19 05:26:14'),
+(1, NULL, '4004', NULL, 'superadmin', 'superadmin@gmail.com', NULL, 'superadmin', NULL, '$2y$10$P7XKbcdy.V46KeuF1PljgOoXXfAQvqjuZkPg71AyMlNUkdcWbBXjS', 'user-photo/1645269974.jpg', 1, 5, 'eWuxc4EZc6pWYaOhw0snkYuNZ2iDQUqI5BugUYKHhiAWi492SfrZyPY0pjTJ', '2021-03-24 05:29:53', '2022-02-19 05:26:14'),
 (2, NULL, NULL, NULL, 'admin', 'kajol1122018@gmail.com', NULL, NULL, NULL, '$2y$10$dSPMgoOjeaGN2C1kaNe1aeJFSr5wh5I8IWe0C5tIncxF2LUkp6toS', NULL, 1, 5, NULL, '2021-03-24 06:14:00', '2022-08-10 03:10:49'),
 (37, NULL, '2', NULL, 'Kamruzzaman kajol', 'm@gmail.com', NULL, NULL, NULL, '$2y$10$5grwvm3VicSU12V4m6kWBOT.PBDFWwDV06KRreOa8F.TS.AocT7kG', NULL, 1, 0, NULL, '2022-11-24 02:51:33', '2022-11-24 02:51:33');
 
@@ -197,7 +197,9 @@ INSERT INTO `consigment_details` (`id`, `consigment_id`, `product_name`, `quanti
 (7, '3', 'Brick 3', '10', '1000', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21'),
 (8, '3', 'Brick 2', '10', '2000', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21'),
 (9, '4', 'Brick 1', '2', '400', NULL, '2022-11-24 04:36:57', '2022-11-24 04:36:57'),
-(10, '4', 'Brick 3', '2', '630', NULL, '2022-11-24 04:36:57', '2022-11-24 04:36:57');
+(10, '4', 'Brick 3', '2', '630', NULL, '2022-11-24 04:36:57', '2022-11-24 04:36:57'),
+(11, '5', 'Brick 3', '2', '13', '1', '2022-12-04 04:24:31', '2022-12-04 04:24:53'),
+(12, '6', 'Brick 2', '2', '400', NULL, '2022-12-04 04:27:25', '2022-12-04 04:27:25');
 
 -- --------------------------------------------------------
 
@@ -227,7 +229,9 @@ CREATE TABLE `consignments` (
 --
 
 INSERT INTO `consignments` (`id`, `main_date`, `rmain_date`, `consignment_number`, `client_name`, `delivery_address`, `contact`, `select_truck`, `driver_name`, `driver_contact`, `request_type`, `status`, `created_at`, `updated_at`) VALUES
-(3, '2022-11-16', '2022-11-16', 'SFP8B5Y42X', 'Mr.Rahim', 'Rajshahi', '2333333', '54443', 'Ranu', '54543543', 'Normal', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21');
+(3, '2022-11-16', '2022-11-16', 'SFP8B5Y42X', 'Mr.Rahim', 'Rajshahi', '2333333', '54443', 'Ranu', '54543543', 'Normal', '1', '2022-11-16 03:20:55', '2022-11-16 03:21:21'),
+(5, '2022-12-04', '2022-12-04', '69PGO3RTMK', 'Mr.Rahim', 'Rajshahi', '2333333', '54443', 'Ranu', '54543543', 'Normal', '1', '2022-12-04 04:24:31', '2022-12-04 04:24:53'),
+(6, '2022-12-04', NULL, 'NA3W8JYOXS', 'Mr. Karim', 'mirpur', '09989', '12345', 'Rasel', '54322', 'Normal', '0', '2022-12-04 04:27:25', '2022-12-04 04:27:25');
 
 -- --------------------------------------------------------
 
@@ -284,9 +288,9 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`id`, `main_date`, `product_name`, `lot_number`, `quantity`, `sell_quantity`, `status`, `created_at`, `updated_at`) VALUES
-(3, '2022-11-16', 'Brick 3', 'BE8T7945AJ', '4986', NULL, '1', '2022-11-16 03:16:41', '2022-11-24 04:39:54'),
+(3, '2022-11-16', 'Brick 3', 'BE8T7945AJ', '4984', NULL, '1', '2022-11-16 03:16:41', '2022-12-04 04:24:31'),
 (4, '2022-11-16', 'Brick 1', 'D6HENQJR17', '5998', NULL, '1', '2022-11-16 03:17:15', '2022-11-24 04:36:57'),
-(5, '2022-11-16', 'Brick 2', '92E807C1J5', '8058', NULL, '1', '2022-11-16 03:17:47', '2022-11-24 04:39:54');
+(5, '2022-11-16', 'Brick 2', '92E807C1J5', '8056', NULL, '1', '2022-11-16 03:17:47', '2022-12-04 04:27:25');
 
 -- --------------------------------------------------------
 
@@ -497,6 +501,7 @@ CREATE TABLE `otherconsigmentdetails` (
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -505,9 +510,9 @@ CREATE TABLE `otherconsigmentdetails` (
 -- Dumping data for table `otherconsigmentdetails`
 --
 
-INSERT INTO `otherconsigmentdetails` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Brick 3', '2', '900', '2022-11-24 04:39:54', '2022-11-24 04:39:54'),
-(2, '1', 'Brick 2', '2', '500', '2022-11-24 04:39:54', '2022-11-24 04:39:54');
+INSERT INTO `otherconsigmentdetails` (`id`, `consigment_id`, `product_name`, `quantity`, `price`, `client_name`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Brick 3', '144', '900', 'Kamruzzaman kajol', '2022-11-24 04:39:54', '2022-12-05 02:01:51'),
+(2, '1', 'Brick 2', '150', '500', 'Kamruzzaman kajol', '2022-11-24 04:39:54', '2022-12-05 02:01:51');
 
 -- --------------------------------------------------------
 
@@ -659,7 +664,9 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `app_url`, 
 (516, 'sell_to_shop_add', 'admin', 'sell_to_shop', 'admin/sell_to_shop_add', NULL, NULL),
 (517, 'sell_to_shop_view', 'admin', 'sell_to_shop', 'admin/sell_to_shop_view', NULL, NULL),
 (518, 'sell_to_shop_delete', 'admin', 'sell_to_shop', 'admin/sell_to_shop_delete', NULL, NULL),
-(519, 'sell_to_shop_update', 'admin', 'sell_to_shop', 'admin/sell_to_shop_update', NULL, NULL);
+(519, 'sell_to_shop_update', 'admin', 'sell_to_shop', 'admin/sell_to_shop_update', NULL, NULL),
+(520, 'sell_report_add', 'admin', 'sell_report', 'admin/sell_report_add', NULL, NULL),
+(521, 'sell_report_view', 'admin', 'sell_report', 'admin/sell_report_view', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -846,9 +853,15 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (514, 1),
 (515, 1),
 (516, 1),
+(516, 14),
 (517, 1),
+(517, 14),
 (518, 1),
-(519, 1);
+(518, 14),
+(519, 1),
+(519, 14),
+(520, 1),
+(521, 1);
 
 -- --------------------------------------------------------
 
@@ -860,11 +873,24 @@ CREATE TABLE `selltoshopdetails` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `consigment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `client_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `selltoshopdetails`
+--
+
+INSERT INTO `selltoshopdetails` (`id`, `consigment_id`, `product_name`, `client_name`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(1, '1', 'Brick 3', NULL, '44', NULL, '2022-11-25 23:14:05', '2022-11-25 23:14:05'),
+(2, '1', 'Brick 2', NULL, '44', NULL, '2022-11-25 23:14:05', '2022-11-25 23:14:05'),
+(7, '10', 'Brick 3', NULL, '5', NULL, '2022-11-26 04:00:45', '2022-11-26 04:00:45'),
+(8, '10', 'Brick 2', NULL, '5', NULL, '2022-11-26 04:00:46', '2022-11-26 04:00:46'),
+(9, '11', 'Brick 3', NULL, '1', NULL, '2022-12-05 02:01:51', '2022-12-05 02:01:51'),
+(10, '11', 'Brick 2', NULL, '1', NULL, '2022-12-05 02:01:51', '2022-12-05 02:01:51');
 
 -- --------------------------------------------------------
 
@@ -874,6 +900,7 @@ CREATE TABLE `selltoshopdetails` (
 
 CREATE TABLE `selltoshops` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `main_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `consignment_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -884,6 +911,23 @@ CREATE TABLE `selltoshops` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `selltoshops`
+--
+
+INSERT INTO `selltoshops` (`id`, `main_date`, `name`, `consignment_number`, `shop_name`, `delivery_address`, `contact`, `request_type`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2022-11-26', 'Kamruzzaman kajol', 'MAUVQESR5P', 'test shop', 'test address', '32423', NULL, '0', '2022-11-25 23:14:05', '2022-11-25 23:14:05'),
+(2, '2022-11-26', 'Kamruzzaman kajol', '515170', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:52:03', '2022-11-26 03:52:03'),
+(3, '2022-11-26', 'Kamruzzaman kajol', '211233', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:55:48', '2022-11-26 03:55:48'),
+(4, '2022-11-26', 'Kamruzzaman kajol', '365912', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:57:19', '2022-11-26 03:57:19'),
+(5, '2022-11-26', 'Kamruzzaman kajol', '722533', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:57:53', '2022-11-26 03:57:53'),
+(6, '2022-11-26', 'Kamruzzaman kajol', '712989', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:58:21', '2022-11-26 03:58:21'),
+(7, '2022-11-26', 'Kamruzzaman kajol', '647203', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:59:29', '2022-11-26 03:59:29'),
+(8, '2022-11-26', 'Kamruzzaman kajol', '320368', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 03:59:52', '2022-11-26 03:59:52'),
+(9, '2022-11-26', 'Kamruzzaman kajol', '353027', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 04:00:17', '2022-11-26 04:00:17'),
+(10, '2022-11-26', 'Kamruzzaman kajol', '706567', 'test two', 'test two ad', '34534', NULL, '0', '2022-11-26 04:00:45', '2022-11-26 04:00:45'),
+(11, '2022-12-05', 'Kamruzzaman kajol', 'QH4BSZE51F', 'test shop', 'hfghfgh', 're3r3e', NULL, '0', '2022-12-05 02:01:51', '2022-12-05 02:01:51');
 
 -- --------------------------------------------------------
 
@@ -1251,13 +1295,13 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `consigment_details`
 --
 ALTER TABLE `consigment_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `consignments`
 --
 ALTER TABLE `consignments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `consiproducts`
@@ -1323,7 +1367,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=520;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=522;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1359,13 +1403,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `selltoshopdetails`
 --
 ALTER TABLE `selltoshopdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `selltoshops`
 --
 ALTER TABLE `selltoshops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
